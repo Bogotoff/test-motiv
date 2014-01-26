@@ -6,76 +6,211 @@ using System;
  */
 public class MainMenu: MonoBehaviour
 {
-    /**
-     * @name Идентификаторы окон.
-     * @{
-     */
-    private const int CM_MAIN    = 0;     /**< Главное меню. */
-    private const int CM_OPTIONS = 1;     /**< Меню настроек. */
-    private const int CM_SELECT_USER = 2; /**< Меню выбора пользователя. */
-    /** @} */
-    
-    /** Фоновая текстура. */
-    public Texture backgroundTexture;
-    
-    /** Ширина кнопки в процентах [0..1]. */
-    public float buttonWidth;
+    /** Фоновая текустура. */
+    public Texture2D backgroundTexture;
 
-    /** Область экрана. */
-    private Rect _clientRect;
-
-    /** Индекс текущего окна. */
-    private int _currentWindow = CM_MAIN;
-    
-    /** Область окна настройки. */
-    private Rect _optionsMenuRect;
-    
     /** Громкость музыки. */
-    private float _musicVolume = 80f;
+    private float _musicVolume = 0.8f;
     
     /** Громкость эффектов. */
-    private float _effectsVolume = 80f;
+    private float _effectsVolume = 0.8f;
     
     /** Громкость музыки до применения. */
     private float _oldOptionsVolume;
     
     /** Индекс разрешения экрана. */
     private int _resIndex = 0;
-    
-    /** Индекс разрешения экрана, до применения настроек. */
-    private int _oldResIndex;
-    
-    /** Интенсивность мыши. */
-    private float _mouseIntensivity = 80f;
-    
-    /** Ширина кнопки в пикселях (по-умолчанию) */
-    private float _baseButtonWidth;
-    
-    /** Высота кнопки в пикселях (по-умолчанию) */
-    private float _baseButtonHeight;
-    
+
+    /** Чувствительность мыши. */
+    private float _mouseSensitivity = 0.8f;
+
+    /** Меню настроек. */
+    private GameObject _optionsPanel;
+
+    /** Окно выбора профиля. */
+    private GameObject _selectProfileWindow;
+
     /**
      * Инициализация.
      */
     void Start()
     {
-        if (backgroundTexture == null) {
-            Debug.LogError("backgroundTexture == null");
-        }
-        
-        updateClientRect();
-        
-        Resolution[] res = Screen.resolutions;
-        _resIndex        = 0;
-        
-        for (int i = 0; i < res.Length; i++) {
-            if (Screen.currentResolution.Equals(res[i])) {
-                _resIndex = i;
-                break;
+        _resIndex = PlayerPrefs.GetInt("resolution", -1);
+
+        if (_resIndex == -1 || _resIndex >= Screen.resolutions.Length) {
+            Resolution[] res = Screen.resolutions;
+            _resIndex = 0;
+
+            for (int i = 0; i < res.Length; i++) {
+                if (Screen.currentResolution.Equals(res[i])) {
+                    _resIndex = i;
+                    break;
+                }
             }
+
+            PlayerPrefs.SetInt("resolution", _resIndex);
+        } else {
+            Screen.SetResolution(Screen.resolutions[_resIndex].width, Screen.resolutions[_resIndex].height, true);
+        }
+
+        _musicVolume      = PlayerPrefs.GetFloat("music_volume", 0.8f);
+        _effectsVolume    = PlayerPrefs.GetFloat("effects_volume", 0.8f);
+        _mouseSensitivity = PlayerPrefs.GetFloat("mouse_sensitivity", 0.8f);
+
+        GameObject.Find("startButton").GetComponent<ButtonEvents>().addClickListener(onStartButtonClick);
+        GameObject.Find("optionsButton").GetComponent<ButtonEvents>().addClickListener(onOptionsButtonClick);
+        GameObject.Find("exitButton").GetComponent<ButtonEvents>().addClickListener(onExitButtonClick);
+
+        _optionsPanel = GameObject.Find("optionsPanel");
+        GetComponent<AudioSource>().volume = _musicVolume;
+
+        _selectProfileWindow = GameObject.Find("selectProfile");
+        
+        initOptionsPanel();
+        initProfileWindow();
+    }
+
+    /**
+     * Инициализация окна настроек.
+     */
+    private void initOptionsPanel()
+    {
+        GameObject.Find("optionsCancelButton").GetComponent<ButtonEvents>().addClickListener(onOptionsCancelClick);
+        GameObject.Find("optionsOkButton").GetComponent<ButtonEvents>().addClickListener(onOptionsOkClick);
+
+        // громкость музыки
+        GameObject.Find("volumeBar").GetComponent<UIScrollBar>().scrollValue = _musicVolume;
+        GameObject.Find("volumeBar").GetComponent<UIScrollBar>().onChange    = onVolumeChange;
+
+        // громкость эффектов
+        GameObject.Find("effectsBar").GetComponent<UIScrollBar>().scrollValue = _effectsVolume;
+        GameObject.Find("effectsBar").GetComponent<UIScrollBar>().onChange    = onEffectsVolumeChange;
+
+
+        // чувствительность мыши
+        GameObject.Find("sensitivityBar").GetComponent<UIScrollBar>().scrollValue = _mouseSensitivity;
+        GameObject.Find("sensitivityBar").GetComponent<UIScrollBar>().onChange    = onSensitivityChange;
+
+        // разрешение экрана
+        GameObject.Find("resolutionLabel").GetComponent<UILabel>().text =
+            "Разрешение экрана (" + Screen.resolutions[_resIndex].width + "x" + Screen.resolutions[_resIndex].height + ")";
+
+        GameObject.Find("resolutionBar").GetComponent<UIScrollBar>().scrollValue =
+            (Screen.resolutions.Length == 1) ? 0 : (float)_resIndex / (Screen.resolutions.Length - 1);
+
+        GameObject.Find("resolutionBar").GetComponent<UIScrollBar>().onChange = onResolutionChange;
+
+        _optionsPanel.SetActive(false);
+    }
+
+    /**
+     * Нажатие по кнопке Отмена в окне настроек.
+     * 
+     * @param target Объект инициализировавший это событие
+     */
+    private void onOptionsCancelClick(GameObject target)
+    {
+        UIScrollBar sb = GameObject.Find("volumeBar").GetComponent<UIScrollBar>();
+        sb.scrollValue = PlayerPrefs.GetFloat("music_volume", 0.8f);
+        onVolumeChange(sb);
+
+        sb = GameObject.Find("effectsBar").GetComponent<UIScrollBar>();
+        sb.scrollValue = PlayerPrefs.GetFloat("effects_volume", 0.8f);
+        onEffectsVolumeChange(sb);
+
+        sb = GameObject.Find("sensitivityBar").GetComponent<UIScrollBar>();
+        sb.scrollValue = PlayerPrefs.GetFloat("mouse_sensitivity", 0.8f);
+        onSensitivityChange(sb);
+
+        sb = GameObject.Find("resolutionBar").GetComponent<UIScrollBar>();
+        sb.scrollValue = PlayerPrefs.GetInt("resolution", 0);
+        onResolutionChange(sb);
+
+        _optionsPanel.SetActive(false);
+    }
+
+    /**
+     * Нажатие по кнопке OK в окне настроек.
+     * 
+     * @param target Объект инициализировавший это событие
+     */
+    private void onOptionsOkClick(GameObject target)
+    {
+        PlayerPrefs.SetFloat("music_volume", _musicVolume);
+        PlayerPrefs.SetFloat("effects_volume", _effectsVolume);
+        PlayerPrefs.SetFloat("mouse_sensitivity", _mouseSensitivity);
+
+        _optionsPanel.SetActive(false);
+        Screen.SetResolution(Screen.resolutions[_resIndex].width, Screen.resolutions[_resIndex].height, true);
+    }
+
+    /**
+     * Событие при изменении громкости музыки.
+     * 
+     * @param scrollBar Объект ползунка(скроллбара)
+     */
+    private void onVolumeChange(UIScrollBar scrollBar)
+    {
+        if (scrollBar != null) {
+            _musicVolume = scrollBar.scrollValue;
+        }
+
+        GetComponent<AudioSource>().volume = _musicVolume;
+    }
+
+    /**
+     * Событие при изменении громкости музыки.
+     * 
+     * @param scrollBar Объект ползунка(скроллбара)
+     */
+    private void onEffectsVolumeChange(UIScrollBar scrollBar)
+    {
+        if (scrollBar != null) {
+            _effectsVolume = scrollBar.scrollValue;
+
+            //GetComponent<AudioSource>().volume = _effectsVolume;
         }
     }
-    
+
+    /**
+     * Событие при изменении чувствительности мыши.
+     * 
+     * @param scrollBar Объект ползунка(скроллбара)
+     */
+    private void onSensitivityChange(UIScrollBar scrollBar)
+    {
+        if (scrollBar != null) {
+            _mouseSensitivity = scrollBar.scrollValue;
+        }
+    }
+
+    /**
+     * Событие при перемещении ползунка разрешения экрана.
+     * 
+     * @param scrollBar Объект ползунка(скроллбара)
+     */
+    private void onResolutionChange(UIScrollBar scrollBar)
+    {
+        Resolution[] resolutions = Screen.resolutions;
+        _resIndex = (int)(scrollBar.scrollValue * (resolutions.Length - 1));
+
+        GameObject.Find("resolutionLabel").GetComponent<UILabel>().text =
+            "Разрешение экрана (" + resolutions[_resIndex].width + "x" + resolutions[_resIndex].height + ")";
+    }
+
+    /** Инициализация окна выбора профиля. */
+    private void initProfileWindow()
+    {
+        _selectProfileWindow.GetComponent<ProfileSelectWindow>().setOkClick(onProfileSelect);
+        _selectProfileWindow.SetActive(false);
+    }
+
+    /** Выбор профиля и запуск игры. */
+    private void onProfileSelect(int index)
+    {
+        Application.LoadLevel("level1");
+    }
+
     /**
      * Событие отрисовки GUI элементов.
      * 
@@ -83,95 +218,47 @@ public class MainMenu: MonoBehaviour
      */
     void OnGUI()
     {
-        updateClientRect();
-        
-        GUI.DrawTexture(_clientRect, backgroundTexture, ScaleMode.ScaleAndCrop);
-        
-        if (_currentWindow == CM_MAIN) {
-            drawMainMenu();
-        } else if (_currentWindow == CM_OPTIONS) {
-            drawOptionsMenu();
-        } else if (_currentWindow == CM_SELECT_USER) {
-            drawSelectUserMenu();
+        if (backgroundTexture != null) {
+            GUI.DrawTexture(Camera.main.pixelRect, backgroundTexture, ScaleMode.ScaleAndCrop);
         }
     }
-    
+
     /**
-     * Обновляет размер экрана и размеры кнопок.
+     * Нажатие по кнопке Старт.
+     * 
+     * @param target Объек инициализировавший событие
      */
-    private void updateClientRect()
+    private void onStartButtonClick(GameObject target)
     {
-        _clientRect = new Rect(0, 0, Camera.main.pixelWidth, Camera.main.pixelHeight);
-        
-        _baseButtonWidth   = _clientRect.width * buttonWidth;
-        
-        if (_baseButtonWidth < 100) {
-            _baseButtonWidth = 100;
-        }
-        
-        _baseButtonHeight  = _baseButtonWidth * 0.2f;
+        _selectProfileWindow.SetActive(true);
     }
-    
+
     /**
-     * Отображает главное меню.
+     * Нажатие по кнопке Настройки.
+     * 
+     * @param target Объек инициализировавший событие
      */
-    private void drawMainMenu()
+    private void onOptionsButtonClick(GameObject target)
     {
-        if (GUI.Button(new Rect((_clientRect.width - _baseButtonWidth)* 0.5f,
-                                (_clientRect.height - _baseButtonHeight)* 0.5f - _baseButtonHeight * 1.4f,
-                                _baseButtonWidth, _baseButtonHeight), "Старт")
-        ) {
-            Debug.Log("Start");
-        }
-        
-        if (GUI.Button(new Rect((_clientRect.width - _baseButtonWidth)* 0.5f,
-                                (_clientRect.height - _baseButtonHeight)* 0.5f,
-                                _baseButtonWidth, _baseButtonHeight), "Опции")
-        ) {
-            // Запоминаем настройки для возможности отмены
-            _oldOptionsVolume = _musicVolume;
-            _oldResIndex      = _resIndex;
-            
-            _setCurrentWindow(CM_OPTIONS);
-        }
-        
-        if (GUI.Button(new Rect((_clientRect.width - _baseButtonWidth)* 0.5f,
-                                (_clientRect.height - _baseButtonHeight)* 0.5f + _baseButtonHeight * 1.4f,
-                                _baseButtonWidth, _baseButtonHeight), "Выход")
-        ) {
-            Application.Quit();
-        }
+        _optionsPanel.SetActive(true);
     }
-    
+
     /**
-     * Отображает меню настроек.
+     * Нажатие по кнопке Выход.
+     * 
+     * @param target Объек инициализировавший событие
      */
-    private void drawOptionsMenu()
+    private void onExitButtonClick(GameObject target)
     {
-        float windowHeight = _clientRect.height * 0.55f;
-        float windowWidth  = windowHeight * 0.7f;
-        
-        if (windowWidth < 300) {
-            windowWidth = 300;
-        }
-        
-        if (windowHeight < 300) {
-            windowHeight = 300;
-        }
-        
-        _optionsMenuRect = GUI.ModalWindow(0, 
-                                           new Rect(_clientRect.width * 0.5f - windowWidth * 0.5f,
-                                                    _clientRect.height * 0.5f - windowHeight * 0.5f,
-                                                    windowWidth, windowHeight), 
-                                           drawOptionsWindow, "Опции");
+        Application.Quit();
     }
-    
+
     /**
      * Отображает элементы окна настроек.
      * 
      * @param windowId Идентификатор окна.
      */
-    private void drawOptionsWindow(int windowId)
+    /*private void drawOptionsWindow(int windowId)
     {
         float border       = _optionsMenuRect.height * 0.1f;
         float groupHeight  = (_optionsMenuRect.height - _baseButtonHeight - 2f * border) * 0.24f;
@@ -261,37 +348,5 @@ public class MainMenu: MonoBehaviour
             _setCurrentWindow(CM_MAIN);
         }
     }
-
-    /**
-     * TODO удалить или дописать.
-     */
-    private void drawSelectUserMenu()
-    {
-        /*
-        float windowHeight = _clientRect.height * 0.55f;
-        float windowWidth  = windowHeight * 0.7f;
-        
-        if (windowWidth < 300) {
-            windowWidth = 300;
-        }
-        
-        if (windowHeight < 300) {
-            windowHeight = 300;
-        }
-        
-        spMenuRect = GUI.ModalWindow(0, new Rect(_clientRect.width * 0.5f - windowWidth * 0.5f,
-                                     _clientRect.height * 0.5f - windowHeight * 0.5f,
-                                     windowWidth, windowHeight), drawOptionsWindow, "Опции");
-        */
-    }
-    
-    /**
-     * Задает текущее окно.
-     * 
-     * @param windowId Идентификатор окна.
-     */
-    private void _setCurrentWindow(int windowId)
-    {
-        _currentWindow = windowId;
-    }
+    */
 }
