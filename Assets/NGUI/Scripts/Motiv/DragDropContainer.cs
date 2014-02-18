@@ -25,10 +25,8 @@ public class DragDropContainer : MonoBehaviour
             return false;
         }
 
-        item.transform.parent = _cachedTransform;
-        Vector3 pos = item.transform.position;
-        pos.z = 0;
-        item.transform.localPosition = pos;
+        item.transform.parent        = _cachedTransform;
+        item.transform.localPosition = Vector3.zero;
 
         if (_table != null) {
             _table.repositionNow = true;

@@ -9,7 +9,9 @@ public class DragDropItem : MonoBehaviour
     private Transform _cachedTransform;
     private bool _IsDragging = false;
     private Transform _lastParent;
-    
+    private UIRoot _uiRoot;
+    private Camera _uiCamera;
+
     void Awake()
     {
         _cachedTransform = transform;
@@ -17,6 +19,16 @@ public class DragDropItem : MonoBehaviour
         
         if (prefab == null) {
             prefab = gameObject;
+        }
+    }
+
+    void Start()
+    {
+        _uiRoot = NGUITools.FindInParents<UIRoot>(gameObject);
+        UICamera uiCamera = NGUITools.FindInParents<UICamera>(gameObject);
+
+        if (uiCamera != null) {
+            _uiCamera = uiCamera.gameObject.GetComponent<Camera>();
         }
     }
 
@@ -39,6 +51,10 @@ public class DragDropItem : MonoBehaviour
             //updateTable();
         } else {
             _cachedTransform.parent = _lastParent;
+
+            if (_cachedTransform.parent.GetComponent<DragDropContainer>() != null) {
+                transform.localPosition = Vector3.zero;
+            }
         }
 
         updateTable();
@@ -46,7 +62,7 @@ public class DragDropItem : MonoBehaviour
         // Make all widgets update their parents
         BroadcastMessage("CheckParent", SendMessageOptions.DontRequireReceiver);
     }
-    
+
     void OnDrag(Vector2 delta)
     {
         if (UICamera.currentTouchID == -1) {
@@ -61,7 +77,7 @@ public class DragDropItem : MonoBehaviour
                 
                 _cachedTransform.BroadcastMessage("CheckParent", SendMessageOptions.DontRequireReceiver);
             } else {
-                _cachedTransform.localPosition += (Vector3)delta;
+                _cachedTransform.localPosition += (Vector3)delta * ((_uiCamera != null ? _uiCamera.orthographicSize : 1f));
             }
         }
     }
