@@ -5,6 +5,7 @@ public class DragDropContainer : MonoBehaviour
 {
     public int group = 0;
     public int maxItemCount = 0;
+    public OnDragDropCallback dragDropCallback = null;
 
     private Transform _cachedTransform;
     private UITable _table;
@@ -31,7 +32,11 @@ public class DragDropContainer : MonoBehaviour
         if (_table != null) {
             _table.repositionNow = true;
         }
-        
+
+        if (dragDropCallback != null) {
+            dragDropCallback(this, item);
+        }
+
         return true;
     }
 
