@@ -828,7 +828,7 @@ MonoBehaviour:
   mPivot: 4
   mMat: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
   mDepth: 2
-  mText: "\u0413"
+  mText: 3
   mEncoding: 0
   mMultiline: 0
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
@@ -1049,7 +1049,7 @@ MonoBehaviour:
   mPivot: 4
   mMat: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
   mDepth: 2
-  mText: "\u0410"
+  mText: 1
   mEncoding: 0
   mMultiline: 0
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
@@ -1600,7 +1600,7 @@ Prefab:
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
     - target: {fileID: 11400000, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
@@ -1619,7 +1619,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mText
-      value: "\u0411"
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mColor.r
@@ -1780,7 +1780,7 @@ Prefab:
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
     - target: {fileID: 11400000, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
@@ -1799,7 +1799,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mText
-      value: "\u041E"
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mColor.r
@@ -2393,7 +2393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317dd9fff45f97b4fbe670c1d8d0feb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropContainersRoot: {fileID: 1839283813}
+  initDropContainersRoot: {fileID: 860818630}
+  targetDropContainersRoot: {fileID: 1839283813}
 --- !u!4 &713614513
 Transform:
   m_ObjectHideFlags: 0
@@ -2753,7 +2754,7 @@ Prefab:
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
     - target: {fileID: 11400000, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
@@ -2772,7 +2773,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mText
-      value: "\u0413"
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mColor.r
@@ -2927,7 +2928,7 @@ Prefab:
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
     - target: {fileID: 11400000, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
@@ -2946,7 +2947,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mText
-      value: "\u0416"
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mColor.r
@@ -3015,7 +3016,7 @@ Prefab:
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
     - target: {fileID: 11400000, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
@@ -3042,6 +3043,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
+      propertyPath: mText
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3366,11 +3371,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: a89e918c1111432429c17762a53c2c93, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -217.289902
+      value: -203.958069
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a89e918c1111432429c17762a53c2c93, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 41.6138
+      value: 115.253334
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a89e918c1111432429c17762a53c2c93, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3630,7 +3635,7 @@ Prefab:
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
     - target: {fileID: 11400000, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
@@ -3649,7 +3654,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mText
-      value: "\u042F"
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mColor.r
@@ -3748,7 +3753,7 @@ Transform:
   m_PrefabInternal: {fileID: 1150963530}
   m_GameObject: {fileID: 1399466516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -217.289902, y: 41.6138, z: 0}
+  m_LocalPosition: {x: -203.958069, y: 115.253334, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 551535222}
@@ -3936,7 +3941,7 @@ MonoBehaviour:
   mPivot: 4
   mMat: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
   mDepth: 2
-  mText: "\u042F"
+  mText: 7
   mEncoding: 0
   mMultiline: 0
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
@@ -4064,7 +4069,7 @@ MonoBehaviour:
   mPivot: 4
   mMat: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
   mDepth: 2
-  mText: "\u0416"
+  mText: 4
   mEncoding: 0
   mMultiline: 0
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
@@ -4174,7 +4179,7 @@ MonoBehaviour:
   mPivot: 4
   mMat: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
   mDepth: 2
-  mText: "\u0422"
+  mText: 6
   mEncoding: 0
   mMultiline: 0
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
@@ -4253,7 +4258,7 @@ Transform:
   m_PrefabInternal: {fileID: 2043548413}
   m_GameObject: {fileID: 1583186875}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -551.646851, y: -94.7696533, z: 0}
+  m_LocalPosition: {x: -642.163147, y: -81.4035339, z: 0}
   m_LocalScale: {x: 1.00007987, y: 1.00007987, z: 1.00007987}
   m_Children:
   - {fileID: 681026768}
@@ -4459,7 +4464,7 @@ Prefab:
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
     - target: {fileID: 11400000, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
@@ -4478,7 +4483,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mText
-      value: "\u0422"
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mColor.r
@@ -4588,7 +4593,7 @@ MonoBehaviour:
   mPivot: 4
   mMat: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
   mDepth: 2
-  mText: "\u041E"
+  mText: 5
   mEncoding: 0
   mMultiline: 0
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
@@ -5463,7 +5468,7 @@ MonoBehaviour:
   mPivot: 4
   mMat: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
   mDepth: 2
-  mText: "\u0411"
+  mText: 2
   mEncoding: 0
   mMultiline: 0
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
@@ -5483,11 +5488,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: a89e918c1111432429c17762a53c2c93, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -551.646851
+      value: -642.163147
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a89e918c1111432429c17762a53c2c93, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -94.7696533
+      value: -81.4035339
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a89e918c1111432429c17762a53c2c93, type: 2}
       propertyPath: m_LocalPosition.z
