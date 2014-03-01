@@ -9,24 +9,81 @@ public class AlphabetGame: IntellectualGame
 {
     public GameObject initDropContainersRoot;
     public GameObject targetDropContainersRoot;
+    public UILabel countdownLabel;
 
     private bool _completed = false;
     private int _dropedCount;
     private int _maxDropCount;
-    
+    private int _timeLimit;
+    private float _startTime = 0;
+
+    void Start()
+    {
+        startGame();
+    }
+
+    void Update()
+    {
+        if (_completed) {
+            return;
+        }
+
+        int dt = _timeLimit - Mathf.FloorToInt(Time.time - _startTime);
+
+        _updateCountdownText(dt);
+
+        if (dt <= 0) {
+            finishGame(false);
+        }
+    }
+
+    public override void startGame()
+    {
+        _timeLimit    = 10;
+        _maxDropCount = 0;
+        _dropedCount  = 0;
+        _completed    = true;
+        
+        _initializeDropContainers();
+        _initializeDragItems();
+        
+        _updateCountdownText(_timeLimit);
+        
+        _startTime = Time.time;
+    }
+
+    public override void finishGame(bool gameCompleted)
+    {
+        _completed = true;
+
+        if (gameCompleted) {
+            Debug.Log("Game completed");
+        } else {
+            Debug.Log("Game over");
+        }
+    }
+
     public override bool checkEndOfGame()
     {
         return _dropedCount >= _maxDropCount;
     }
 
-    void Start()
+    private void _updateCountdownText(int timeStamp)
     {
-        _maxDropCount = 0;
-        _dropedCount  = 0;
-        _completed    = true;
+        if (countdownLabel == null) {
+            return;
+        }
 
-        _initializeDropContainers();
-        _initializeDragItems();
+        if (timeStamp > 3600 || timeStamp < 0) {
+            countdownLabel.text = "--:--";
+            return;
+        }
+
+        int m = Mathf.FloorToInt(timeStamp / 60);
+        int s = timeStamp % 60;
+
+        countdownLabel.text = "" + ((m < 10) ? "0" : "") + m.ToString() + ":" 
+                            + ((s < 10) ? "0" : "") + s.ToString();
     }
 
     private void _initializeDropContainers()
@@ -152,8 +209,7 @@ public class AlphabetGame: IntellectualGame
         _dropedCount++;
 
         if (!_completed && checkEndOfGame()) {
-            _completed = true;
-            Debug.Log("Game completed");
+            finishGame(true);
         }
     }
 }
