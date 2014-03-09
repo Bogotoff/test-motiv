@@ -42,6 +42,7 @@ public class PlayerController: MonoBehaviour
     /** Контроллер для управления физическими свойствами. */
     private CharacterController _controller;
 
+    private bool isForceStop = false;
     /**
      * Запуск скрипта.
      */
@@ -71,6 +72,11 @@ public class PlayerController: MonoBehaviour
 
         Vector3 deltaPos = (Input.mousePosition - _screenCenter) / (float)Screen.width;
 
+        if (isForceStop) {
+            deltaPos.x = 0;
+            deltaPos.y = -1;
+        }
+        
         speedForward += deltaPos.y * accelaration;
         speedSide    += deltaPos.x * sideAccelaration;
 
@@ -94,7 +100,7 @@ public class PlayerController: MonoBehaviour
         float verticalSpeed = speed.y + gravity * Time.deltaTime;
 
         if (_controller.isGrounded) {
-            if (Input.GetMouseButtonDown(0)) {
+            if (!isForceStop && Input.GetMouseButtonDown(0)) {
                 verticalSpeed = calculateJumpVerticalSpeed(jumpHeight);
             } else {
                 verticalSpeed = gravity * Time.deltaTime;
@@ -126,5 +132,10 @@ public class PlayerController: MonoBehaviour
     private float calculateJumpVerticalSpeed(float targetJumpHeight)
     {
         return Mathf.Sqrt(-2 * targetJumpHeight * gravity);
+    }
+
+    public void forceStop()
+    {
+        isForceStop = true;
     }
 }
