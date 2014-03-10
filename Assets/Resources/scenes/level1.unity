@@ -1108,13 +1108,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b415c2a7586b2c14281e8712dac6aea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelaration: .5
-  sideAccelaration: 2
-  maxSpeed: 25
-  maxSpeedSide: 20
+  accelaration: .699999988
+  sideAccelaration: 3.5
+  maxSpeed: 40
+  maxSpeedSide: 25
   speedSlider: {fileID: 1284526796}
   sliderSteps: 20
-  jumpHeight: 1.5
+  jumpHeight: 3
   gravity: -20
   speed: {x: 0, y: 0, z: 0}
 --- !u!143 &407645426
@@ -1663,7 +1663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootTransform: {fileID: 1665401668}
   targetTransform: {fileID: 1291048724}
-  moveSpeed: 8
+  moveSpeed: 7
 --- !u!1 &685368533
 GameObject:
   m_ObjectHideFlags: 0
