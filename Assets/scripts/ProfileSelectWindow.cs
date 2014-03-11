@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-
-
 public class ProfileSelectWindow : MonoBehaviour
 {
     /** Скроллбар списка. */
@@ -61,8 +59,11 @@ public class ProfileSelectWindow : MonoBehaviour
         if (_selectedItem != null) {
             hide();
 
+            ProfileItem profile = _items[_selectedItem.itemIndex].GetComponent<ProfileItem>();
+            int age = System.Convert.ToInt32(profile.scoreLabel.text);
+            
             if (_selectProfileCallback != null) {
-                _selectProfileCallback(_selectedItem.itemIndex);
+                _selectProfileCallback(age);
             }
         }
     }

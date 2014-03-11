@@ -205,10 +205,24 @@ public class MainMenu: MonoBehaviour
         _selectProfileWindow.SetActive(false);
     }
 
-    /** Выбор профиля и запуск игры. */
-    private void onProfileSelect(int index)
+    /**
+     * Выбор профиля и запуск игры.
+     * 
+     * @param playerAge Возраст игрока
+     */
+    private void onProfileSelect(int playerAge)
     {
-        Application.LoadLevel("level1");
+        try {
+            GameData.initialize(playerAge);
+
+            if (GameData.hasNextGame()) {
+                GameInfo info = GameData.getNextGame();
+
+                Application.LoadLevel(info.sceneName);
+            }
+        } catch (System.Exception e) {
+            Debug.LogError(e.Message);
+        }
     }
 
     /**
