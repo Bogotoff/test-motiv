@@ -59,10 +59,13 @@ public class GameInfoList: List<List<GameInfo>>
 public static class GameData
 {
     /** Количество уровней за игру. */
-    public const int GAME_SERIES_COUNT = 1;
+    public const int MAX_LEVEL_IN_SERIES = 4;
 
     /** Параметры и результаты уровней. */
     private static GameInfoList _gameInfo = null;
+
+    /** Возраст игрока, по которому были загружены уровни игры. */
+    private static int _playerAge = 0;
 
     /** Номер текущей игры. */
     private static int _currentDriveGame;
@@ -82,6 +85,10 @@ public static class GameData
      */
     public static void initialize(int playerAge)
     {
+        if (playerAge <= 0) {
+            throw new System.Exception("Возраст игрока не может быть <= 0");
+        }
+
         _isInitialized = false;
 
         _currentDriveGame        = -1;
@@ -90,7 +97,7 @@ public static class GameData
         if (_gameInfo == null) {
             _gameInfo = new GameInfoList();
         }
-        
+
         _gameInfo.Clear();
 
         QueryResult res = DataBase.getInstance().query(
@@ -132,7 +139,7 @@ public static class GameData
         // Катание на доске.
         i = 0;
 
-        while (i < GAME_SERIES_COUNT) {
+        while (i++ < MAX_LEVEL_IN_SERIES) {
             if (driveInfo.Count <= 0) {
                 break;
             }
@@ -140,14 +147,13 @@ public static class GameData
             int r = UnityEngine.Random.Range(0, driveInfo.Count);
             _gameInfo[0].Add(driveInfo[r]);
             driveInfo.RemoveAt(r);
-
-            i++;
         }
 
         // Интеллектуальные игры.
         i = 0;
-        
-        while (i < GAME_SERIES_COUNT - 1) {
+        int intellectualGameCount = _gameInfo[0].Count - 1;
+
+        while (i++ < intellectualGameCount) {
             if (intellectInfo.Count <= 0) {
                 break;
             }
@@ -155,8 +161,6 @@ public static class GameData
             int r = UnityEngine.Random.Range(0, intellectInfo.Count);
             _gameInfo[1].Add(intellectInfo[r]);
             intellectInfo.RemoveAt(r);
-            
-            i++;
         }
 
         driveInfo.Clear();
@@ -165,14 +169,38 @@ public static class GameData
         intellectInfo.Clear();
         intellectInfo = null;
 
-        if (_gameInfo[0].Count < GAME_SERIES_COUNT || 
-            _gameInfo[1].Count < GAME_SERIES_COUNT - 1
-        ) {
-            _gameInfo.Clear();
-            throw new System.Exception("Wrong level count for games");
+        if (_gameInfo[1].Count != _gameInfo[0].Count - 1) {
+            _gameInfo[0].RemoveRange(0, _gameInfo[0].Count - _gameInfo[1].Count - 1);
+
+            if (_gameInfo[0].Count <= 0) {
+                _gameInfo.Clear();
+                throw new System.Exception("Wrong level count for games");
+            }
         }
 
+        _playerAge     = playerAge;
         _isInitialized = true;
+    }
+
+    /**
+     * Перезапускает игру для того же возраста игрок, который играл в прошлый раз.
+     * 
+     * @throw Exception, DatabaseException
+     */
+    public static void restartGame()
+    {
+        if (!_isInitialized || _playerAge <= 0) {
+            throw new System.Exception(
+                "Невозможно перезапустить игру. Попробуйте сначала запустить игру.");
+        }
+
+        initialize(_playerAge);
+
+        if (hasNextGame()) {
+            GameInfo info = getNextGame();
+
+            Application.LoadLevel(info.sceneName);
+        }
     }
 
     /**

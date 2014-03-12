@@ -48,5 +48,18 @@ public class Player: MonoBehaviour
     {
         Debug.Log("Finish!");
         GetComponent<PlayerController>().forceStop();
+
+        try {
+            if (GameData.hasNextIntellectualGame()) {
+                GameInfo info = GameData.getNextIntellectualGame();
+                
+                Application.LoadLevel(info.sceneName);
+            } else {
+                // окно результатов игры
+                Application.LoadLevel("gameResults");
+            }
+        } catch (System.Exception e) {
+            Debug.LogError(e.Message);
+        }
     }
 }
