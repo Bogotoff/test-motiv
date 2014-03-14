@@ -25,6 +25,9 @@ public class GameInfo
     
     /** Максимальное время прохождения уровня. */
     public int maxTime;
+
+    /** Максимально возможное количество очков на уровне. */
+    public int maxScore;
     
     /** Время прохождения уровня. */
     public int totalTime;
@@ -38,12 +41,14 @@ public class GameInfo
      * @param id        идентификатор уровня в БД
      * @param sceneName название сцены
      * @param maxTime   макс. время прохождения уровня
+     * @param maxScore  макс. возможное количество очков на уровне
      */
-    public GameInfo(int id, string sceneName, int maxTime)
+    public GameInfo(int id, string sceneName, int maxTime, int maxScore)
     {
         this.id         = id;
         this.sceneName  = sceneName;
         this.maxTime    = maxTime;
+        this.maxScore   = maxScore;
         this.totalTime  = 0;
         this.totalScore = 0;
     }
@@ -101,7 +106,7 @@ public static class GameData
         _gameInfo.Clear();
 
         QueryResult res = DataBase.getInstance().query(
-            "SELECT id, sceneId, type, maxTime " +
+            "SELECT id, sceneId, type, maxTime, maxScore " +
             "FROM mv_levels " +
             "WHERE (" + playerAge.ToString() + " >= minAge) AND " +
             "      (" + playerAge.ToString() + " <= maxAge) "
@@ -121,13 +126,15 @@ public static class GameData
                 driveInfo.Add(new GameInfo(
                     res[i].asInt("id"),
                     res[i].asString("sceneId"),
-                    res[i].asInt("maxTime")
+                    res[i].asInt("maxTime"),
+                    res[i].asInt("maxScore")
                 ));
             } else {
                 intellectInfo.Add(new GameInfo(
                     res[i].asInt("id"),
                     "i" + res[i].asString("sceneId"),
-                    res[i].asInt("maxTime")
+                    res[i].asInt("maxTime"),
+                    res[i].asInt("maxScore")
                 ));
             }
         }
