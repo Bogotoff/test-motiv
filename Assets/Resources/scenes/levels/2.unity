@@ -1109,9 +1109,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accelaration: .699999988
-  sideAccelaration: 3.5
-  maxSpeed: 40
-  maxSpeedSide: 25
+  sideAccelaration: 2.5
+  maxSpeed: 45
+  maxSpeedSide: 30
   speedSlider: {fileID: 1284526796}
   sliderSteps: 20
   jumpHeight: 3

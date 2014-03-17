@@ -41,7 +41,7 @@ public class GameResultsLoader: MonoBehaviour
             label = GameObject.Find("item" + (i + 1) + "_3").GetComponent<UILabel>();
             
             if (label != null) {
-                label.text = _getFormattedTime(infoList[0][i].totalScore);
+                label.text = infoList[0][i].totalScore.ToString();
             }
 
             totalMaxScore += infoList[0][i].maxScore;
@@ -54,7 +54,7 @@ public class GameResultsLoader: MonoBehaviour
                 label = GameObject.Find("item" + (i + 1) + "_4").GetComponent<UILabel>();
                 
                 if (label != null) {
-                    label.text = _getFormattedTime(infoList[1][i].totalScore);
+                    label.text = infoList[1][i].totalScore.ToString();
                     totalScore += infoList[0][i].totalScore;
                 }
 
@@ -69,7 +69,7 @@ public class GameResultsLoader: MonoBehaviour
         label = GameObject.Find("totalScore").GetComponent<UILabel>();
         
         if (label != null) {
-            label.text = totalScore.ToString() + " из " + totalMaxScore.ToString();
+            label.text = totalScore.ToString() + " / " + totalMaxScore.ToString();
         }
 
         // итоговая оценка

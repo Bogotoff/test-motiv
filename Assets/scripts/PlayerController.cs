@@ -48,6 +48,8 @@ public class PlayerController: MonoBehaviour
      */
     void Start()
     {
+    accelaration = 6;
+    maxSpeed = 150;
         _cashedTransform = transform;
         _screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0);
 

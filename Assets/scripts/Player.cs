@@ -53,10 +53,10 @@ public class Player: MonoBehaviour
             if (GameData.hasNextIntellectualGame()) {
                 GameInfo info = GameData.getNextIntellectualGame();
                 
-                Application.LoadLevel(info.sceneName);
+                Application.LoadLevelAdditive(info.sceneName);
             } else {
                 // окно результатов игры
-                Application.LoadLevel("gameResults");
+                Application.LoadLevelAdditive("gameResults");
             }
         } catch (System.Exception e) {
             Debug.LogError(e.Message);
