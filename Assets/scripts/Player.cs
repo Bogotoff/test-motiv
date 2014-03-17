@@ -4,6 +4,7 @@ using System.Collections;
 public class Player: MonoBehaviour
 {
     private bool _isFailTrigger;
+
     void Start()
     {
         _isFailTrigger = false;

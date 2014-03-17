@@ -6,6 +6,17 @@ using System.Collections;
  */
 public class PlayerController: MonoBehaviour
 {
+    /**
+     * Отображаемый объект.
+     */
+    public GameObject graphics;
+
+    public GameObject playerLook;
+    public GameObject playerLookUp;
+
+    public float moveCoef = 1f;
+    public float sideCoef = 1f;
+
     /** Ускорение вдоль трассы. */
     public float accelaration;
 
@@ -43,13 +54,15 @@ public class PlayerController: MonoBehaviour
     private CharacterController _controller;
 
     private bool isForceStop = false;
+
+    private float _angle = 0;
     /**
      * Запуск скрипта.
      */
     void Start()
     {
-    accelaration = 6;
-    maxSpeed = 150;
+        accelaration = 6;
+        maxSpeed = 150;
         _cashedTransform = transform;
         _screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0);
 
@@ -59,7 +72,7 @@ public class PlayerController: MonoBehaviour
     /**
      * Обновление кадра.
      */
-    void Update()
+    void LateUpdate()
     {
         if (_controller == null) {
             _controller = GetComponent<CharacterController>();
@@ -121,6 +134,22 @@ public class PlayerController: MonoBehaviour
 
         speed = new Vector3(speedSide, verticalSpeed, speedForward);
 
+        deltaPos = speed * 1;
+        deltaPos.y = 0;
+
+        deltaPos = deltaPos + Vector3.forward * moveCoef;
+
+        speedSide = Vector3.Angle(deltaPos, Vector3.forward);
+
+        if (deltaPos.x < 0) {
+            speedSide = -speedSide;
+        }
+
+
+        graphics.transform.LookAt(graphics.transform.position + deltaPos, new Vector3((speedSide - _angle) * sideCoef * speed.magnitude, 1, 0).normalized);
+        _angle = _angle + (speedSide - _angle) * 0.2f;
+
+        //deltaPos = speed * Time.deltaTime;
         _controller.Move(speed * Time.deltaTime);
     }
 

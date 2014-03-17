@@ -79,6 +79,8 @@ public class GameResultsLoader: MonoBehaviour
             sumEvaluation = (int)Math.Round((sumEvaluation + 0.000001) / (infoList[0].Count + infoList[1].Count));
             label.text    = sumEvaluation.ToString();
         }
+
+        //TODO сохранение результатов в БД
     }
 
     /**
