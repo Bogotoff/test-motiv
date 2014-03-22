@@ -12,18 +12,20 @@ public class GameResultsLoader: MonoBehaviour
         GameObject.Find("restartGameButton").GetComponent<ButtonEvents>().addClickListener(onRestartGameButtonClick);
 
         GameInfoList infoList = null;
+        User user             = null;
 
         try {
             infoList = GameData.getInfo();
+            user     = GameData.getUser();
         } catch(System.Exception e) {
             return;
         }
 
-        if (infoList[0].Count <= 0) {
+        if (infoList[0].Count <= 0 || user == null) {
             return;
         }
 
-        int i;
+        int i, k;
         UILabel label;
         int sumEvaluation = 0;
         int totalMaxScore = 0;
@@ -80,7 +82,25 @@ public class GameResultsLoader: MonoBehaviour
             label.text    = sumEvaluation.ToString();
         }
 
-        //TODO сохранение результатов в БД
+        // сохранение результатов в БД
+        user.gameId++;
+
+        for (k = 0; k < 2; k++) {
+            for (i = 0; i < infoList[k].Count; i++) {
+                DataBase.getInstance().execute(
+                    "INSERT INTO mv_results " +
+                    "(levelId, gameId, points, completeTime) " +
+                    "VALUES ('" + infoList[k][i].id + "','" + user.gameId + "','" + 
+                    infoList[k][i].totalScore + "','" + infoList[k][i].totalTime + "')"
+                );
+            }
+        }
+
+        DataBase.getInstance().execute(
+            "UPDATE mv_users " + 
+            "SET gameCount = '" + user.gameId.ToString() + "' " +
+            "WHERE (userId = '" + user.id + "')"
+        );
     }
 
     /**

@@ -12,48 +12,6 @@ public enum GameType
     INTELLECTUAL // Интеллектуальная игра.
 }
 
-/**
- * Хранит параметры игры и результаты прохождения.
- */
-public class GameInfo
-{
-    /** Идентификатор уровня в БД. */
-    public int id;
-    
-    /** Название сцены. */
-    public string sceneName;
-    
-    /** Максимальное время прохождения уровня. */
-    public int maxTime;
-
-    /** Максимально возможное количество очков на уровне. */
-    public int maxScore;
-    
-    /** Время прохождения уровня. */
-    public int totalTime;
-    
-    /** Общее количество очков за уровень. */
-    public int totalScore;
-    
-    /**
-     * Конструктор.
-     * 
-     * @param id        идентификатор уровня в БД
-     * @param sceneName название сцены
-     * @param maxTime   макс. время прохождения уровня
-     * @param maxScore  макс. возможное количество очков на уровне
-     */
-    public GameInfo(int id, string sceneName, int maxTime, int maxScore)
-    {
-        this.id         = id;
-        this.sceneName  = sceneName;
-        this.maxTime    = maxTime;
-        this.maxScore   = maxScore;
-        this.totalTime  = 0;
-        this.totalScore = 0;
-    }
-}
-
 public class GameInfoList: List<List<GameInfo>>
 {
 }
@@ -70,7 +28,7 @@ public static class GameData
     private static GameInfoList _gameInfo = null;
 
     /** Возраст игрока, по которому были загружены уровни игры. */
-    private static int _playerAge = 0;
+    private static User _user = null;
 
     /** Номер текущей игры. */
     private static int _currentDriveGame;
@@ -84,15 +42,21 @@ public static class GameData
     /**
      * Инициализация и загрузка данных игры для выбранного профиля.
      * 
-     * @param playerAge Возраст игрока
+     * @param user данные игрока
      * 
      * @throw Exception, DatabaseException
      */
-    public static void initialize(int playerAge)
+    public static void initialize(User user)
     {
-        if (playerAge <= 0) {
+        if (user == null) {
+            throw new System.Exception("Не заданы параметры игрока");
+        }
+
+        if (user.age <= 0) {
             throw new System.Exception("Возраст игрока не может быть <= 0");
         }
+
+        Debug.Log("gameId: " + user.gameId);
 
         _isInitialized = false;
 
@@ -108,8 +72,8 @@ public static class GameData
         QueryResult res = DataBase.getInstance().query(
             "SELECT id, sceneId, type, maxTime, maxScore " +
             "FROM mv_levels " +
-            "WHERE (" + playerAge.ToString() + " >= minAge) AND " +
-            "      (" + playerAge.ToString() + " <= maxAge) "
+            "WHERE (" + user.age.ToString() + " >= minAge) AND " +
+            "      (" + user.age.ToString() + " <= maxAge) "
         );
 
         if (res.numRows() <= 0) {
@@ -185,7 +149,7 @@ public static class GameData
             }
         }
 
-        _playerAge     = playerAge;
+        _user          = user;
         _isInitialized = true;
     }
 
@@ -196,16 +160,15 @@ public static class GameData
      */
     public static void restartGame()
     {
-        if (!_isInitialized || _playerAge <= 0) {
+        if (!_isInitialized || _user == null) {
             throw new System.Exception(
                 "Невозможно перезапустить игру. Попробуйте сначала запустить игру.");
         }
 
-        initialize(_playerAge);
+        initialize(_user);
 
         if (hasNextGame()) {
             GameInfo info = getNextGame();
-
             Application.LoadLevel(info.sceneName);
         }
     }
@@ -223,6 +186,21 @@ public static class GameData
         }
 
         return _gameInfo;
+    }
+
+    /**
+     * Возвращает объект с данными игрока.
+     * 
+     * @return User Возвращает объект с данными игрока
+     * @throw Exception
+     */
+    public static User getUser()
+    {
+        if (!_isInitialized) {
+            throw new System.Exception("GameData not initialized. First call: GameData.initialize()");
+        }
+        
+        return _user;
     }
 
     /**

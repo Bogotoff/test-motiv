@@ -208,12 +208,12 @@ public class MainMenu: MonoBehaviour
     /**
      * Выбор профиля и запуск игры.
      * 
-     * @param playerAge Возраст игрока
+     * @param user данные выбранного игрока
      */
-    private void onProfileSelect(int playerAge)
+    private void onProfileSelect(User user)
     {
         try {
-            GameData.initialize(playerAge);
+            GameData.initialize(user);
 
             if (GameData.hasNextGame()) {
                 GameInfo info = GameData.getNextGame();

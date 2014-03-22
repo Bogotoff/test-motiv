@@ -2,4 +2,4 @@
 using System.Collections;
 
 public delegate void ClickCallback(GameObject target);
-public delegate void SelectProfileCallback(int index);
+public delegate void SelectProfileCallback(User user);

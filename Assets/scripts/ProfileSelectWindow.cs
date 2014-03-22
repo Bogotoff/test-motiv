@@ -37,6 +37,9 @@ public class ProfileSelectWindow : MonoBehaviour
     /** Список профилей. */
     private List<GameObject> _items;
 
+    /** Список игроков. */
+    private List<User> _users;
+
     /** Выделенный профиль в списке. */
     private ProfileItem _selectedItem = null;
 
@@ -48,7 +51,8 @@ public class ProfileSelectWindow : MonoBehaviour
     void Start()
     {
         _items = new List<GameObject>();
-        okButton.GetComponent<UIEventListener>().onClick = onOkClick;
+        _users = new List<User>();
+        okButton.GetComponent<UIEventListener>().onClick     = onOkClick;
         cancelButton.GetComponent<UIEventListener>().onClick = onCancelClick;
         scrollBar.onChange = onScroll;
         fillList();
@@ -59,11 +63,8 @@ public class ProfileSelectWindow : MonoBehaviour
         if (_selectedItem != null) {
             hide();
 
-            ProfileItem profile = _items[_selectedItem.itemIndex].GetComponent<ProfileItem>();
-            int age = System.Convert.ToInt32(profile.scoreLabel.text);
-            
             if (_selectProfileCallback != null) {
-                _selectProfileCallback(age);
+                _selectProfileCallback(_users[_selectedItem.itemIndex]);
             }
         }
     }
@@ -130,7 +131,7 @@ public class ProfileSelectWindow : MonoBehaviour
     public void fillList()
     {
         QueryResult res = DataBase.getInstance().query(
-            "SELECT userId, age, name, surname, famillar " +
+            "SELECT userId, age, name, surname, famillar, gameCount " +
             "FROM mv_users " +
             "ORDER BY userId ASC"
         );
@@ -138,28 +139,46 @@ public class ProfileSelectWindow : MonoBehaviour
         UIPanel clipPanel = clippingPanel.GetComponent<UIPanel>();
 
         float startY = clipPanel.clipRange.y + (clipPanel.clipRange.w - itemHeight) * 0.5f - paddingSize;
+        int i;
 
+        for (i = 0; i < _items.Count; i++) {
+            _users[i] = null;
+        }
+
+        _users.Clear();
         _items.Clear();
 
         GameObject item;
         ProfileItem profile;
         int num = res.numRows();
 
-        for (int i = 0; i < num; i++) {
+        for (i = 0; i < num; i++) {
+            _users.Add(new User(
+                res[i].asInt("userId"),
+                res[i].asInt("age"),
+                res[i].asString("name"),
+                res[i].asString("surname"),
+                res[i].asString("famillar"),
+                res[i].asInt("gameCount")
+            ));
+
             item = (GameObject)Instantiate(profilePrefab);
             item.transform.parent = draggablePanel.transform;
             item.transform.localPosition = new Vector3(0, startY - i * itemHeight, 0);
             item.transform.localScale = Vector3.one;
             profile = item.GetComponent<ProfileItem>();
-            profile.nameLabel.text  = res[i].asString("name") + " " + res[i].asString("surname");
             profile.scoreLabel.text = res[i].asString("age");
+            profile.nameLabel.text  = res[i].asString("name") + " " 
+                                    + res[i].asString("surname") + " " 
+                                    + res[i].asString("famillar")[0] + ".";
             profile.itemIndex = i;
 
             item.GetComponent<UIEventListener>().onClick = onItemClick;
             _items.Add(item);
         }
 
-        _maxScrollPos = clipPanel.clipRange.y - clipPanel.clipRange.w * 0.5f - startY + (num - 1) * itemHeight + itemHeight * 0.5f + paddingSize;
+        _maxScrollPos = clipPanel.clipRange.y - clipPanel.clipRange.w * 0.5f 
+                      - startY + (num - 1) * itemHeight + itemHeight * 0.5f + paddingSize;
 
         onScroll(scrollBar);
         
@@ -168,7 +187,11 @@ public class ProfileSelectWindow : MonoBehaviour
         }
     }
 
-    /** Клик по кнопке. */
+    /**
+     * Клик по кнопке.
+     * 
+     * @param button кнопка
+     */
     private void onItemClick(GameObject button)
     {
         if (_selectedItem != null) {
