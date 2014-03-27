@@ -6,40 +6,16 @@ public class GroupDifferentGame: IntellectualGame
 {
     public int group1Count = 3;
     public int group2Count = 3;
-    public int timeLimit   = 120;
-    
+
     public GameObject initDropContainersRoot;
     public GameObject targetDropContainersRoot;
 
-    public UILabel countdownLabel;
     public UILabel group1CountLabel;
     public UILabel group2CountLabel;
     
     private int _droppedCount1;
     private int _droppedCount2;
-    private int _countDownTime = 0;
-    private float _startTime = 0;
-    
-    void Start()
-    {
-        startGame();
-    }
-    
-    void Update()
-    {
-        if (_completed) {
-            return;
-        }
-        
-        _countDownTime = timeLimit - Mathf.FloorToInt(Time.time - _startTime);
-        
-        _updateCountdownText(_countDownTime);
-        
-        if (_countDownTime <= 0) {
-            finishGame(false);
-        }
-    }
-    
+
     public override void startGame()
     {
         if (group1Count < 0) {
@@ -56,14 +32,10 @@ public class GroupDifferentGame: IntellectualGame
         
         _droppedCount1 = 0;
         _droppedCount2 = 0;
-        _countDownTime = timeLimit;
         _completed     = true;
         
         _initializeDropContainers();
         _initializeDragItems();
-        
-        _updateCountdownText(timeLimit);
-        _startTime = Time.time;
     }
 
     public override bool checkEndOfGame()
@@ -81,25 +53,7 @@ public class GroupDifferentGame: IntellectualGame
         
         GameData.saveCurrentIntellectualResult(_countDownTime, totalScore);
     }
-    
-    private void _updateCountdownText(int timeStamp)
-    {
-        if (countdownLabel == null) {
-            return;
-        }
-        
-        if (timeStamp > 3600 || timeStamp < 0) {
-            countdownLabel.text = "--:--";
-            return;
-        }
-        
-        int m = Mathf.FloorToInt(timeStamp / 60);
-        int s = timeStamp % 60;
-        
-        countdownLabel.text = "" + ((m < 10) ? "0" : "") + m.ToString() + ":" 
-            + ((s < 10) ? "0" : "") + s.ToString();
-    }
-    
+
     private void _initializeDropContainers()
     {
         if (targetDropContainersRoot != null) {

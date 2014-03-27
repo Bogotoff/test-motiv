@@ -6,10 +6,42 @@ public delegate void OnDragDropCallback(DragDropContainer container,
 
 public abstract class IntellectualGame : MonoBehaviour
 {
-    protected bool _completed = false;
+    public int timeLimit = 60;
+    public UILabel countdownLabel;
+    
+    protected bool _completed    = false;
+    protected int _countDownTime = 0;
+    protected float _startTime   = 0;
 
     public abstract void startGame();
     public abstract bool checkEndOfGame();
+    public abstract void saveGameResults();
+
+    void Start()
+    {
+        _completed = false;
+        startGame();
+
+        _countDownTime = timeLimit;
+        _startTime     = Time.time;
+        _updateCountdownText(_countDownTime);
+    }
+    
+    void Update()
+    {
+        if (_completed) {
+            return;
+        }
+        
+        _countDownTime = timeLimit - Mathf.FloorToInt(Time.time - _startTime);
+        _updateCountdownText(_countDownTime);
+        
+        if (_countDownTime <= 0) {
+            finishGame(false);
+        }
+
+        step();
+    }
 
     public virtual void finishGame(bool gameCompleted)
     {
@@ -33,5 +65,26 @@ public abstract class IntellectualGame : MonoBehaviour
         }
     }
 
-    public abstract void saveGameResults();
+    protected void _updateCountdownText(int timeStamp)
+    {
+        if (countdownLabel == null) {
+            return;
+        }
+        
+        if (timeStamp > 3600 || timeStamp < 0) {
+            countdownLabel.text = "--:--";
+            return;
+        }
+        
+        int m = Mathf.FloorToInt(timeStamp / 60);
+        int s = timeStamp % 60;
+        
+        countdownLabel.text = "" + ((m < 10) ? "0" : "") + m.ToString() + ":" 
+                            + ((s < 10) ? "0" : "") + s.ToString();
+    }
+
+    public virtual void step()
+    {
+
+    }
 }

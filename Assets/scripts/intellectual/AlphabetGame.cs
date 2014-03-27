@@ -6,48 +6,19 @@ public class AlphabetGame: IntellectualGame
 {
     public GameObject initDropContainersRoot;
     public GameObject targetDropContainersRoot;
-    public UILabel countdownLabel;
 
     private int _dropedCount;
     private int _maxDropCount;
-    private int _timeLimit;
-    private int _countDownTime = 0;
-    private float _startTime = 0;
-
-    void Start()
-    {
-        startGame();
-    }
-
-    void Update()
-    {
-        if (_completed) {
-            return;
-        }
-
-        _countDownTime = _timeLimit - Mathf.FloorToInt(Time.time - _startTime);
-
-        _updateCountdownText(_countDownTime);
-
-        if (_countDownTime <= 0) {
-            finishGame(false);
-        }
-    }
 
     public override void startGame()
     {
-        _timeLimit     = 30;
-        _maxDropCount  = 0;
-        _dropedCount   = 0;
-        _countDownTime = _timeLimit;
-        _completed     = true;
+        timeLimit     = 30;
+        _maxDropCount = 0;
+        _dropedCount  = 0;
+        _completed    = true;
         
         _initializeDropContainers();
         _initializeDragItems();
-        
-        _updateCountdownText(_timeLimit);
-        
-        _startTime = Time.time;
     }
 
     public override bool checkEndOfGame()
@@ -64,24 +35,6 @@ public class AlphabetGame: IntellectualGame
         int totalScore = _countDownTime * 3;
 
         GameData.saveCurrentIntellectualResult(_countDownTime, totalScore);
-    }
-
-    private void _updateCountdownText(int timeStamp)
-    {
-        if (countdownLabel == null) {
-            return;
-        }
-
-        if (timeStamp > 3600 || timeStamp < 0) {
-            countdownLabel.text = "--:--";
-            return;
-        }
-
-        int m = Mathf.FloorToInt(timeStamp / 60);
-        int s = timeStamp % 60;
-
-        countdownLabel.text = "" + ((m < 10) ? "0" : "") + m.ToString() + ":" 
-                            + ((s < 10) ? "0" : "") + s.ToString();
     }
 
     private void _initializeDropContainers()

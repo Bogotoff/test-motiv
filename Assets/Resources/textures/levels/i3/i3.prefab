@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: i3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - name: background
+    outer:
+      serializedVersion: 2
+      x: 283
+      y: 511
+      width: 512
+      height: 512
+    inner:
+      serializedVersion: 2
+      x: 283
+      y: 511
+      width: 512
+      height: 512
+    paddingLeft: 0
+    paddingRight: .00390625
+    paddingTop: .005859375
+    paddingBottom: .162109375
+  - name: item1
+    outer:
+      serializedVersion: 2
+      x: 0
+      y: 510
+      width: 105
+      height: 195
+    inner:
+      serializedVersion: 2
+      x: 0
+      y: 510
+      width: 105
+      height: 195
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: item2
+    outer:
+      serializedVersion: 2
+      x: 120
+      y: 510
+      width: 105
+      height: 195
+    inner:
+      serializedVersion: 2
+      x: 120
+      y: 510
+      width: 105
+      height: 195
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: item3
+    outer:
+      serializedVersion: 2
+      x: 4
+      y: 720
+      width: 105
+      height: 195
+    inner:
+      serializedVersion: 2
+      x: 4
+      y: 720
+      width: 105
+      height: 195
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: item4
+    outer:
+      serializedVersion: 2
+      x: 130
+      y: 718
+      width: 105
+      height: 195
+    inner:
+      serializedVersion: 2
+      x: 130
+      y: 718
+      width: 105
+      height: 195
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: item5
+    outer:
+      serializedVersion: 2
+      x: 0
+      y: 924
+      width: 288
+      height: 105
+    inner:
+      serializedVersion: 2
+      x: 0
+      y: 924
+      width: 288
+      height: 105
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  mPixelSize: 1
+  material: {fileID: 2100000, guid: c3a2fbed8b99e594fabfe6f5114a50b3, type: 2}
+  mCoordinates: 0
+  mReplacement: {fileID: 0}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1
