@@ -559,7 +559,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 314634367}
   - 114: {fileID: 314634368}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: nameLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -792,7 +792,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 358710465}
   - 114: {fileID: 358710466}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1099,7 +1099,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 408810047}
   - 114: {fileID: 408810048}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: timeLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1369,7 +1369,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 471349519}
   - 114: {fileID: 471349520}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LTAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2809,7 +2809,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 987223779}
   - 114: {fileID: 987223780}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Foreground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3130,7 +3130,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1175303278}
   - 114: {fileID: 1175303279}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3444,7 +3444,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1284526795}
   - 114: {fileID: 1284526796}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Progress Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3518,7 +3518,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1342438864}
   - 114: {fileID: 1342438865}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: TAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3594,7 +3594,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1380188125}
   - 114: {fileID: 1380188126}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: speedLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4021,7 +4021,7 @@ GameObject:
   - 4: {fileID: 1725187815}
   - 20: {fileID: 1725187814}
   - 114: {fileID: 1725187813}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4082,7 +4082,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_HDR: 0
@@ -4386,7 +4386,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1912731979}
   - 114: {fileID: 1912731980}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4491,7 +4491,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1943192046}
   - 114: {fileID: 1943192047}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: UI Root (2D)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4532,7 +4532,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1994736051}
   - 114: {fileID: 1994736052}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4581,7 +4581,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2050706691}
   - 114: {fileID: 2050706692}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: RTAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4736,7 +4736,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2074939320}
   - 114: {fileID: 2074939321}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: scoreLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
