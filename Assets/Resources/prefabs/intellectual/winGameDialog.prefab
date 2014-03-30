@@ -69,7 +69,7 @@ MonoBehaviour:
   mPivot: 4
   mMat: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
   mDepth: 4
-  mText: "\u0412\u044B \u0432\u044B\u0438\u0433\u0440\u0430\u043B\u0438!"
+  mText: "\u041E\u0442\u043B\u0438\u0447\u043D\u043E!"
   mEncoding: 0
   mMultiline: 0
   mEffectColor: {r: 1, g: 1, b: 1, a: 1}
