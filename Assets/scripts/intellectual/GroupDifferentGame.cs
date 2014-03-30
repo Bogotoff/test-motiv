@@ -25,11 +25,7 @@ public class GroupDifferentGame: IntellectualGame
         if (group2Count < 0) {
             group2Count = 0;
         }
-        
-        if (timeLimit < 0) {
-            timeLimit = 0;
-        }
-        
+
         _droppedCount1 = 0;
         _droppedCount2 = 0;
         _completed     = true;

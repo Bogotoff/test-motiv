@@ -129,13 +129,13 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 924
-      width: 288
+      width: 284
       height: 105
     inner:
       serializedVersion: 2
       x: 0
       y: 924
-      width: 288
+      width: 284
       height: 105
     paddingLeft: 0
     paddingRight: 0

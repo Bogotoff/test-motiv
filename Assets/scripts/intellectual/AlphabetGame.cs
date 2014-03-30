@@ -12,7 +12,6 @@ public class AlphabetGame: IntellectualGame
 
     public override void startGame()
     {
-        timeLimit     = 30;
         _maxDropCount = 0;
         _dropedCount  = 0;
         _completed    = true;

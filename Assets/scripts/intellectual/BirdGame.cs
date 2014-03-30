@@ -54,40 +54,44 @@ public class BirdGame: IntellectualGame
                     offsetPoint = hit.point - currentItem.transform.position;
                     clipRect = new Vector4(float.MinValue, float.MinValue, float.MaxValue, float.MaxValue);
 
-                    Vector3 itemPos = item.transform.position;
-
+                    Vector3 itemPos  = item.transform.position;
+                    float itemWidth  = item.getWidth();
+                    float itemHeight = item.getHeight();
+                    
                     for (int i = 0; i < items.Count; i++) {
                         if (items[i] != item) {
-                            Vector3 pos = items[i].transform.position;
+                            Vector3 iPos  = items[i].transform.position;
+                            float iHeight = items[i].getHeight();
+                            float iWidth  = items[i].getWidth();
 
                             if (item.moveX) {
-                                if (itemPos.y - item.getHeight() * 0.5f <= pos.y + items[i].getHeight() * 0.5f &&
-                                    itemPos.y + item.getHeight() * 0.5f >= pos.y - items[i].getHeight() * 0.5f
+                                if (itemPos.y - itemHeight * 0.5f < iPos.y + iHeight * 0.5f &&
+                                    itemPos.y + itemHeight * 0.5f > iPos.y - iHeight * 0.5f
                                 ) {
-                                    if (clipRect.z > pos.x - items[i].getWidth() * 0.5f - item.getWidth() * 0.5f &&
-                                        pos.x - items[i].getWidth() * 0.5f > itemPos.x + item.getWidth() * 0.5f
+                                    if ((clipRect.z > iPos.x - iWidth * 0.5f - itemWidth * 0.5f) &&
+                                        ((iPos.x - iWidth * 0.5f) - (itemPos.x + itemWidth * 0.5f) > -0.001)
                                     ) {
-                                        clipRect.z = pos.x - items[i].getWidth() * 0.5f - item.getWidth() * 0.5f;
+                                        clipRect.z = iPos.x - iWidth * 0.5f - itemWidth * 0.5f;
                                     } else
-                                    if (clipRect.x < pos.x + items[i].getWidth() * 0.5f + item.getWidth() * 0.5f &&
-                                        pos.x + items[i].getWidth() * 0.5f < itemPos.x - item.getWidth() * 0.5f
+                                    if ((clipRect.x < iPos.x + iWidth * 0.5f + itemWidth * 0.5f) &&
+                                        ((iPos.x + iWidth * 0.5f) - (itemPos.x - itemWidth * 0.5f) < 0.001)
                                     ) {
-                                        clipRect.x = pos.x + items[i].getWidth() * 0.5f + item.getWidth() * 0.5f;
+                                        clipRect.x = iPos.x + iWidth * 0.5f + itemWidth * 0.5f;
                                     }
                                 }
                             } else if (item.moveY) {
-                                if (itemPos.x - item.getWidth() * 0.5f <= pos.x + items[i].getWidth() * 0.5f &&
-                                    itemPos.x + item.getWidth() * 0.5f >= pos.x - items[i].getWidth() * 0.5f
+                                if (itemPos.x - itemWidth * 0.5f < iPos.x + iWidth * 0.5f &&
+                                    itemPos.x + itemWidth * 0.5f > iPos.x - iWidth * 0.5f
                                 ) {
-                                    if (clipRect.w > pos.y - items[i].getHeight() * 0.5f - item.getHeight() * 0.5f &&
-                                        pos.y - items[i].getHeight() * 0.5f > itemPos.y + item.getHeight() * 0.5f
+                                    if ((clipRect.w > iPos.y - iHeight * 0.5f - itemHeight * 0.5f) &&
+                                        ((iPos.y - iHeight * 0.5f) - (itemPos.y + itemHeight * 0.5f) > -0.001)
                                     ) {
-                                        clipRect.w = pos.y - items[i].getHeight() * 0.5f - item.getHeight() * 0.5f;
-                                    } else 
-                                    if (clipRect.y < pos.y + items[i].getHeight() * 0.5f + item.getHeight() * 0.5f &&
-                                        pos.y + items[i].getHeight() * 0.5f < itemPos.y - item.getHeight() * 0.5f
+                                        clipRect.w = iPos.y - iHeight * 0.5f - itemHeight * 0.5f;
+                                    } else
+                                    if ((clipRect.y < iPos.y + iHeight * 0.5f + itemHeight * 0.5f) &&
+                                        ((iPos.y + iHeight * 0.5f) - (itemPos.y - itemHeight * 0.5f) < 0.001)
                                     ) {
-                                        clipRect.y = pos.y + items[i].getHeight() * 0.5f + item.getHeight() * 0.5f;
+                                        clipRect.y = iPos.y + iHeight * 0.5f + itemHeight * 0.5f;
                                     }
                                 }
                             }

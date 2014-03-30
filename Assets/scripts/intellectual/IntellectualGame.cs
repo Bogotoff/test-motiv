@@ -8,7 +8,11 @@ public abstract class IntellectualGame : MonoBehaviour
 {
     public int timeLimit = 60;
     public UILabel countdownLabel;
-    
+
+    public Transform objectsRoot = null;
+    public GameObject winDialogPrefab   = null;
+    public GameObject looseDialogPrefab = null;
+
     protected bool _completed    = false;
     protected int _countDownTime = 0;
     protected float _startTime   = 0;
@@ -19,6 +23,10 @@ public abstract class IntellectualGame : MonoBehaviour
 
     void Start()
     {
+        if (timeLimit < 0) {
+            timeLimit = 0;
+        }
+
         _completed = false;
         startGame();
 
@@ -43,12 +51,33 @@ public abstract class IntellectualGame : MonoBehaviour
         step();
     }
 
-    public virtual void finishGame(bool gameCompleted)
+    private IEnumerator _finish(bool gameCompleted)
     {
-        _completed = true;
-
+        GameObject dlg = null;
+        
         if (gameCompleted) {
-            saveGameResults();
+            if (winDialogPrefab != null) {
+                dlg = GameObject.Instantiate(winDialogPrefab) as GameObject;
+            }
+        } else if (looseDialogPrefab != null) {
+            dlg = GameObject.Instantiate(looseDialogPrefab) as GameObject;
+        }
+        
+        if (dlg != null) {
+            if (objectsRoot != null) {
+                dlg.transform.parent = objectsRoot;
+            } else {
+                dlg.transform.parent = objectsRoot;
+            }
+            
+            dlg.transform.localScale    = Vector3.one;
+            dlg.transform.localPosition = new Vector3(0f, 0f, -1f);
+        }
+
+        yield return new WaitForSeconds(3);
+
+        if (dlg != null) {
+            Destroy(dlg);
         }
 
         try {
@@ -63,6 +92,17 @@ public abstract class IntellectualGame : MonoBehaviour
         } catch (System.Exception e) {
             Debug.LogError(e.Message);
         }
+    }
+
+    public virtual void finishGame(bool gameCompleted)
+    {
+        _completed = true;
+
+        if (gameCompleted) {
+            saveGameResults();
+        }
+
+        StartCoroutine(_finish(gameCompleted));
     }
 
     protected void _updateCountdownText(int timeStamp)

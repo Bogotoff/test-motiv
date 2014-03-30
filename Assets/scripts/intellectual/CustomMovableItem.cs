@@ -8,9 +8,11 @@ public class CustomMovableItem: MonoBehaviour
     public bool moveX;
     public bool moveY;
     
-    private float _width  = 0f;
-    private float _height = 0f;
-    
+    private BoxCollider _collider = null;
+    private GameObject _uiRoot    = null;
+    private bool _isRotated       = false;
+    private Transform _cachedTransform = null;
+
     void Awake()
     {
         if (moveX && moveY) {
@@ -20,36 +22,46 @@ public class CustomMovableItem: MonoBehaviour
     
     void Start()
     {
-        BoxCollider collider = gameObject.GetComponent<BoxCollider>();
+        _cachedTransform = gameObject.transform;
+        _collider = gameObject.GetComponent<BoxCollider>();
 
-        if (collider != null) {
-            GameObject uiRoot = GameObject.FindGameObjectWithTag("UIRoot2D");
-
-            if (uiRoot != null) {
-                Vector3 scale = uiRoot.transform.localScale;
-
-                if (Mathf.Abs(gameObject.transform.localRotation.eulerAngles.z) > 0) {
-                    _height = collider.size.x * transform.localScale.x * scale.x;
-                    _width  = collider.size.y * transform.localScale.y * scale.y;
-                } else {
-                    _width  = collider.size.x * transform.localScale.x * scale.x;
-                    _height = collider.size.y * transform.localScale.y * scale.y;
-                }
-            } else {
-                Debug.LogError("uiRoot = null");
-            }
-        } else {
+        if (collider == null) {
             Debug.LogError("collider = null");
         }
+
+        _uiRoot = GameObject.FindGameObjectWithTag("UIRoot2D");
+
+        if (_uiRoot == null) {
+            Debug.LogError("Ui root with tag \"UIRoot2D\" not found");
+        }
+
+        _isRotated = (Mathf.Abs(_cachedTransform.localRotation.eulerAngles.z) > 0);
     }
     
     public float getWidth()
     {
-        return _width;
+        Vector3 scale = _uiRoot.transform.localScale;
+        float width;
+
+        if (_isRotated) {
+            width = _collider.size.y * _cachedTransform.localScale.y * _uiRoot.transform.localScale.y;
+        } else {
+            width = _collider.size.x * _cachedTransform.localScale.x * _uiRoot.transform.localScale.x;
+        }
+
+        return width;
     }
     
     public float getHeight()
     {
-        return _height;
+        float height;
+
+        if (_isRotated) {
+            height = _collider.size.x * _cachedTransform.localScale.x * _uiRoot.transform.localScale.x;
+        } else {
+            height = _collider.size.y * _cachedTransform.localScale.y * _uiRoot.transform.localScale.y;
+        }
+
+        return height;
     }
 }

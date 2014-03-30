@@ -72,7 +72,7 @@ public class PlayerController: MonoBehaviour
     /**
      * Обновление кадра.
      */
-    void LateUpdate()
+    void Update()
     {
         if (_controller == null) {
             _controller = GetComponent<CharacterController>();
