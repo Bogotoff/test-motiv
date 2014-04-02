@@ -45,7 +45,7 @@ public class PlayerController: MonoBehaviour
     public Vector3 speed = new Vector3(0, 0, 0);
 
     /** Кэшированная компонента Transform. */
-    private Transform _cashedTransform;
+    private Transform _cachedTransform;
 
     /** Центр экрана. */
     private Vector3 _screenCenter;
@@ -63,8 +63,8 @@ public class PlayerController: MonoBehaviour
     {
         accelaration = 6;
         maxSpeed = 150;
-        _cashedTransform = transform;
-        _screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0);
+        _cachedTransform = transform;
+        _screenCenter    = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0);
 
         _controller = GetComponent<CharacterController>();
     }

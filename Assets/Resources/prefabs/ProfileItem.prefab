@@ -30,7 +30,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400002}
   - 114: {fileID: 11400006}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: scoreLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400004}
   - 114: {fileID: 11400008}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400006}
   - 114: {fileID: 11400010}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: nameLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 320, y: 45, z: 0}
-  m_Center: {x: 7.62939453e-06, y: 0, z: -2.00000954}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,8 +155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 0}
-  hover: {x: 1.04999995, y: 1.04999995, z: 1.04999995}
-  pressed: {x: 1.00999999, y: 1.00999999, z: 1.00999999}
+  hover: {x: 1.01999998, y: 1.01999998, z: 1.01999998}
+  pressed: {x: 1, y: 1, z: 1}
   duration: .100000001
 --- !u!114 &11400004
 MonoBehaviour:
@@ -170,8 +170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 100004}
-  hover: {r: .586266518, g: .911764681, b: .543036342, a: 1}
-  pressed: {r: .5, g: .5, b: .5, a: 1}
+  hover: {r: .750050664, g: .875, b: .733455896, a: 1}
+  pressed: {r: .838235259, g: .838235259, b: .838235259, a: 1}
   duration: .200000003
 --- !u!114 &11400006
 MonoBehaviour:

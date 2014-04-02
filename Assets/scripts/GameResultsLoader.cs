@@ -82,25 +82,27 @@ public class GameResultsLoader: MonoBehaviour
             label.text    = sumEvaluation.ToString();
         }
 
-        // сохранение результатов в БД
-        user.gameId++;
+        // сохранение результатов в БД(если не демо-игрок)
+        if (user.id > 0) {
+            user.gameId++;
 
-        for (k = 0; k < 2; k++) {
-            for (i = 0; i < infoList[k].Count; i++) {
-                DataBase.getInstance().execute(
-                    "INSERT INTO mv_results " +
-                    "(levelId, gameId, points, completeTime) " +
-                    "VALUES ('" + infoList[k][i].id + "','" + user.gameId + "','" + 
-                    infoList[k][i].totalScore + "','" + infoList[k][i].totalTime + "')"
-                );
+            for (k = 0; k < 2; k++) {
+                for (i = 0; i < infoList[k].Count; i++) {
+                    DataBase.getInstance().execute(
+                        "INSERT INTO mv_results " +
+                        "(levelId, gameId, points, completeTime) " +
+                        "VALUES ('" + infoList[k][i].id + "','" + user.gameId + "','" + 
+                            infoList[k][i].totalScore + "','" + infoList[k][i].totalTime + "')"
+                    );
+                }
             }
-        }
 
-        DataBase.getInstance().execute(
-            "UPDATE mv_users " + 
-            "SET gameCount = '" + user.gameId.ToString() + "' " +
-            "WHERE (userId = '" + user.id + "')"
-        );
+            DataBase.getInstance().execute(
+                "UPDATE mv_users " + 
+                "SET gameCount = '" + user.gameId.ToString() + "' " +
+                "WHERE (userId = '" + user.id + "')"
+            );
+        }
     }
 
     /**

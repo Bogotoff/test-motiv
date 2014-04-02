@@ -46,13 +46,13 @@ public static class GameData
      * 
      * @throw Exception, DatabaseException
      */
-    public static void initialize(User user)
+    public static int initialize(User user)
     {
         if (user == null) {
             throw new System.Exception("Не заданы параметры игрока");
         }
 
-        if (user.age <= 0) {
+        if (user.id != -1 && user.age <= 0) {
             throw new System.Exception("Возраст игрока не может быть <= 0");
         }
 
@@ -63,22 +63,25 @@ public static class GameData
         _currentDriveGame        = -1;
         _currentIntellectualGame = -1;
 
-        if (_gameInfo == null) {
-            _gameInfo = new GameInfoList();
-        }
-
-        _gameInfo.Clear();
-
         QueryResult res = DataBase.getInstance().query(
             "SELECT id, sceneId, type, maxTime, maxScore " +
             "FROM mv_levels " +
-            "WHERE (" + user.age.ToString() + " >= minAge) AND " +
-            "      (" + user.age.ToString() + " <= maxAge) "
+            ((user.id > 0) 
+                ? "WHERE (" + user.age.ToString() + " >= minAge) AND " +
+                        "(" + user.age.ToString() + " <= maxAge) " 
+                : ""
+            )
         );
 
         if (res.numRows() <= 0) {
-            throw new DatabaseException("Levels data load error.");
+            return 1;
         }
+
+        if (_gameInfo == null) {
+            _gameInfo = new GameInfoList();
+        }
+        
+        _gameInfo.Clear();
 
         List<GameInfo> driveInfo     = new List<GameInfo>();
         List<GameInfo> intellectInfo = new List<GameInfo>();
@@ -151,6 +154,8 @@ public static class GameData
 
         _user          = user;
         _isInitialized = true;
+
+        return 0;
     }
 
     /**

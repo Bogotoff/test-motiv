@@ -150,6 +150,22 @@ public class ProfileSelectWindow : MonoBehaviour
 
         GameObject item;
         ProfileItem profile;
+
+        // демо-игрок
+        _users.Add(new User(-1, -1, "игрок", "Демо-", "", 0));
+
+        item = (GameObject)Instantiate(profilePrefab);
+        item.transform.parent = draggablePanel.transform;
+        item.transform.localPosition = new Vector3(0, startY - 0, 0);
+        item.transform.localScale = Vector3.one;
+        profile = item.GetComponent<ProfileItem>();
+        profile.scoreLabel.text = "-";
+        profile.nameLabel.text  = "Демо-игрок";
+        profile.itemIndex       = 0;
+
+        item.GetComponent<UIEventListener>().onClick = onItemClick;
+        _items.Add(item);
+
         int num = res.numRows();
 
         for (i = 0; i < num; i++) {
@@ -164,14 +180,14 @@ public class ProfileSelectWindow : MonoBehaviour
 
             item = (GameObject)Instantiate(profilePrefab);
             item.transform.parent = draggablePanel.transform;
-            item.transform.localPosition = new Vector3(0, startY - i * itemHeight, 0);
+            item.transform.localPosition = new Vector3(0, startY - (i + 1) * itemHeight, 0);
             item.transform.localScale = Vector3.one;
             profile = item.GetComponent<ProfileItem>();
             profile.scoreLabel.text = res[i].asString("age");
             profile.nameLabel.text  = res[i].asString("name") + " " 
                                     + res[i].asString("surname") + " " 
                                     + res[i].asString("famillar")[0] + ".";
-            profile.itemIndex = i;
+            profile.itemIndex = i + 1;
 
             item.GetComponent<UIEventListener>().onClick = onItemClick;
             _items.Add(item);

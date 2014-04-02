@@ -29,7 +29,6 @@ public class ProfileItem: MonoBehaviour
         {
             return _selected;
         }
-
         set
         {
             setColor(value ? selectedColor : _defaultColor);

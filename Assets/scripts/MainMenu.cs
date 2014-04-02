@@ -213,12 +213,17 @@ public class MainMenu: MonoBehaviour
     private void onProfileSelect(User user)
     {
         try {
-            GameData.initialize(user);
+            int res = GameData.initialize(user);
 
-            if (GameData.hasNextGame()) {
-                GameInfo info = GameData.getNextGame();
+            if (res == 1) {
+                //TODO Для выбранного игрока нет уровней.
+                Debug.LogError("Для выбранного игрока нет уровней.");
+            } else {
+                if (GameData.hasNextGame()) {
+                    GameInfo info = GameData.getNextGame();
 
-                Application.LoadLevel(info.sceneName);
+                    Application.LoadLevel(info.sceneName);
+                }
             }
         } catch (System.Exception e) {
             Debug.LogError(e.Message);

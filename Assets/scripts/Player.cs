@@ -3,11 +3,16 @@ using System.Collections;
 
 public class Player: MonoBehaviour
 {
+    public Game game;
     private bool _isFailTrigger;
 
     void Start()
     {
         _isFailTrigger = false;
+
+        if (game == null) {
+            Debug.LogError("game == null");
+        }
     }
     
     void Update()
@@ -33,34 +38,20 @@ public class Player: MonoBehaviour
 
     public void onFail()
     {
-        Debug.Log("FAIL!");
+        game.onFail();
     }
 
-    public void onBonus()
+    public void onBonus(int bonusScore)
     {
         if (_isFailTrigger) {
             return;
         }
 
-        Debug.Log("Bonus!");
+        game.onBonus(bonusScore);
     }
 
     public void onFinish()
     {
-        Debug.Log("Finish!");
-        GetComponent<PlayerController>().forceStop();
-
-        try {
-            if (GameData.hasNextIntellectualGame()) {
-                GameInfo info = GameData.getNextIntellectualGame();
-                
-                Application.LoadLevelAdditive(info.sceneName);
-            } else {
-                // окно результатов игры
-                Application.LoadLevelAdditive("gameResults");
-            }
-        } catch (System.Exception e) {
-            Debug.LogError(e.Message);
-        }
+        game.onFinish();
     }
 }

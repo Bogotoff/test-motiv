@@ -15,17 +15,17 @@ EditorBuildSettings:
     path: Assets/Resources/scenes/levels/intellectual/i2.unity
   - enabled: 1
     path: Assets/Resources/scenes/levels/intellectual/i3.unity
-  - enabled: 1
-    path: Assets/Resources/scenes/levels/2.unity
-  - enabled: 1
-    path: Assets/Resources/scenes/levels/3.unity
-  - enabled: 1
-    path: Assets/Resources/scenes/levels/4.unity
-  - enabled: 1
-    path: Assets/Resources/scenes/gameResults.unity
   - enabled: 0
     path: Assets/Resources/scenes/levels/2_.unity
   - enabled: 0
     path: Assets/Resources/scenes/levels/3_.unity
   - enabled: 0
     path: Assets/Resources/scenes/levels/4_.unity
+  - enabled: 1
+    path: Assets/Resources/scenes/gameResults.unity
+  - enabled: 1
+    path: Assets/Resources/scenes/levels/2.unity
+  - enabled: 1
+    path: Assets/Resources/scenes/levels/3.unity
+  - enabled: 1
+    path: Assets/Resources/scenes/levels/4.unity
