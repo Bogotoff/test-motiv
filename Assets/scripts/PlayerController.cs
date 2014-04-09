@@ -56,6 +56,7 @@ public class PlayerController: MonoBehaviour
     private bool isForceStop = false;
 
     private float _angle = 0;
+    private float _mouseSensitivity = 1f;
 
     /**
      * Запуск скрипта.
@@ -68,6 +69,9 @@ public class PlayerController: MonoBehaviour
         _screenCenter    = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0);
 
         _controller = GetComponent<CharacterController>();
+
+        _mouseSensitivity = PlayerPrefs.GetFloat("mouse_sensitivity", 0.4f);
+        _mouseSensitivity = 0.3f + _mouseSensitivity * (2-0.3f); //[0.3..2]
     }
 
     /**
@@ -89,37 +93,40 @@ public class PlayerController: MonoBehaviour
 
         float dx = 0;
 
-        Vector3 deltaPos = (Input.mousePosition - _screenCenter) / (float)Screen.width;
+        Vector3 deltaPos = (Input.mousePosition - _screenCenter) / (float)Screen.width * _mouseSensitivity;
+
+        if (isForceStop) {
+            deltaPos.x = 0;
+            deltaPos.y = -1;
+        }
 
         if (_controller.isGrounded) {
-            if (isForceStop) {
-                deltaPos.x = 0;
-                deltaPos.y = -1;
-            }
-
             speedForward += deltaPos.y * accelaration;
             speedSide    += deltaPos.x * sideAccelaration;
 
             dx = deltaPos.x * sideAccelaration;
-
-            if (speedForward > maxSpeed) {
-                speedForward = maxSpeed;
-            }
-
-            if (speedForward < 0) {
-                speedForward = 0;
-            }
-
-            float localMaxSpeedSide = (speedForward < maxSpeedSide) ? speedForward : maxSpeedSide;
-
-            if (speedSide > localMaxSpeedSide) {
-                speedSide = localMaxSpeedSide;
-            } else
-            if (speedSide < -localMaxSpeedSide) {
-                speedSide = -localMaxSpeedSide;
-            }
+        } else {
+            speedSide    += deltaPos.x * sideAccelaration * 0.4f;
+            dx = deltaPos.x * sideAccelaration * 0.4f;
         }
 
+        if (speedForward > maxSpeed) {
+            speedForward = maxSpeed;
+        }
+        
+        if (speedForward < 0) {
+            speedForward = 0;
+        }
+
+        float localMaxSpeedSide = (speedForward < maxSpeedSide) ? speedForward : maxSpeedSide;
+        
+        if (speedSide > localMaxSpeedSide) {
+            speedSide = localMaxSpeedSide;
+        } else
+        if (speedSide < -localMaxSpeedSide) {
+            speedSide = -localMaxSpeedSide;
+        }
+        
         float verticalSpeed = speed.y + gravity * Time.deltaTime;
 
         if (_controller.isGrounded) {

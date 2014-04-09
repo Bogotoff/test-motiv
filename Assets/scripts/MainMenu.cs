@@ -55,7 +55,7 @@ public class MainMenu: MonoBehaviour
 
         _musicVolume      = PlayerPrefs.GetFloat("music_volume", 0.8f);
         _effectsVolume    = PlayerPrefs.GetFloat("effects_volume", 0.8f);
-        _mouseSensitivity = PlayerPrefs.GetFloat("mouse_sensitivity", 0.8f);
+        _mouseSensitivity = PlayerPrefs.GetFloat("mouse_sensitivity", 0.4f);
 
         GameObject.Find("startButton").GetComponent<ButtonEvents>().addClickListener(onStartButtonClick);
         GameObject.Find("optionsButton").GetComponent<ButtonEvents>().addClickListener(onOptionsButtonClick);
@@ -119,7 +119,7 @@ public class MainMenu: MonoBehaviour
         onEffectsVolumeChange(sb);
 
         sb = GameObject.Find("sensitivityBar").GetComponent<UIScrollBar>();
-        sb.scrollValue = PlayerPrefs.GetFloat("mouse_sensitivity", 0.8f);
+        sb.scrollValue = PlayerPrefs.GetFloat("mouse_sensitivity", 0.4f);
         onSensitivityChange(sb);
 
         sb = GameObject.Find("resolutionBar").GetComponent<UIScrollBar>();
