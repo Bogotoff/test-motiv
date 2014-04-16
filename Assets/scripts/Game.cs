@@ -25,6 +25,8 @@ public class Game: MonoBehaviour
             Debug.LogError("userNameLabel == null || timeLabel == null || pointsLabel == null");
             return;
         }
+
+        Camera.main.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("music_volume", 0.8f);
     }
 
     void Start()

@@ -44,6 +44,9 @@ public class PlayerController: MonoBehaviour
     /** Скорость игрока. */
     public Vector3 speed = new Vector3(0, 0, 0);
 
+    /** Скрипт для обработки косаний с землей. */
+    public GroundTrigger groundTrigger;
+
     /** Кэшированная компонента Transform. */
     private Transform _cachedTransform;
 
@@ -100,14 +103,13 @@ public class PlayerController: MonoBehaviour
             deltaPos.y = -1;
         }
 
-        if (_controller.isGrounded) {
-            speedForward += deltaPos.y * accelaration;
-            speedSide    += deltaPos.x * sideAccelaration;
-
+        if (groundTrigger.isGrounded) {
             dx = deltaPos.x * sideAccelaration;
+            speedForward += deltaPos.y * accelaration;
+            speedSide    += dx;
         } else {
-            speedSide    += deltaPos.x * sideAccelaration * 0.4f;
-            dx = deltaPos.x * sideAccelaration * 0.4f;
+            dx         = deltaPos.x * sideAccelaration * 0.4f;
+            speedSide += dx;
         }
 
         if (speedForward > maxSpeed) {
@@ -122,18 +124,17 @@ public class PlayerController: MonoBehaviour
         
         if (speedSide > localMaxSpeedSide) {
             speedSide = localMaxSpeedSide;
-        } else
-        if (speedSide < -localMaxSpeedSide) {
+        } else if (speedSide < -localMaxSpeedSide) {
             speedSide = -localMaxSpeedSide;
         }
         
-        float verticalSpeed = speed.y + gravity * Time.deltaTime;
+        float verticalSpeed = _controller.velocity.y + gravity;// * Time.deltaTime;
 
-        if (_controller.isGrounded) {
+        if (groundTrigger.isGrounded) {
             if (!isForceStop && Input.GetMouseButtonDown(0)) {
-                verticalSpeed = calculateJumpVerticalSpeed(jumpHeight);
+                verticalSpeed = jumpHeight;//calculateJumpVerticalSpeed(jumpHeight);// / Time.deltaTime;
             } else {
-                //verticalSpeed = gravity * Time.deltaTime;
+                verticalSpeed -= 1;//2 * gravity * Time.deltaTime;
             }
         }
 
@@ -158,8 +159,7 @@ public class PlayerController: MonoBehaviour
 
         if (value > 0.5f) {
             value = 0.5f;
-        } else
-        if (value < -0.5f) {
+        } else if (value < -0.5f) {
             value = -0.5f;
         }
 
