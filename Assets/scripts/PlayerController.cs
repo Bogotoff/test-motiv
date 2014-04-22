@@ -47,6 +47,10 @@ public class PlayerController: MonoBehaviour
     /** Скрипт для обработки косаний с землей. */
     public GroundTrigger groundTrigger;
 
+    /** Источник брызгов снега. */
+    public ParticleSystem emitter;
+
+
     /** Кэшированная компонента Transform. */
     private Transform _cachedTransform;
 
@@ -60,21 +64,22 @@ public class PlayerController: MonoBehaviour
 
     private float _angle = 0;
     private float _mouseSensitivity = 1f;
+    private Transform _emitterLocalTransform;
 
     /**
      * Запуск скрипта.
      */
     void Start()
     {
-        //accelaration = 6;
-        //maxSpeed = 150;
         _cachedTransform = transform;
         _screenCenter    = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0);
 
         _controller = GetComponent<CharacterController>();
 
         _mouseSensitivity = PlayerPrefs.GetFloat("mouse_sensitivity", 0.4f);
-        _mouseSensitivity = 0.3f + _mouseSensitivity * (2-0.3f); //[0.3..2]
+        _mouseSensitivity = 0.3f + _mouseSensitivity * (2 - 0.3f); //[0.3..2]
+
+        _emitterLocalTransform = emitter.gameObject.transform;
     }
 
     /**
@@ -89,12 +94,11 @@ public class PlayerController: MonoBehaviour
         if (_controller == null) {
             return;
         }
-        float value;
 
+        float value;
+        float dx = 0;
         float speedForward = speed.z;
         float speedSide    = speed.x;
-
-        float dx = 0;
 
         Vector3 deltaPos = (Input.mousePosition - _screenCenter) / (float)Screen.width * _mouseSensitivity;
 
@@ -107,9 +111,11 @@ public class PlayerController: MonoBehaviour
             dx = deltaPos.x * sideAccelaration;
             speedForward += deltaPos.y * accelaration;
             speedSide    += dx;
+            emitter.enableEmission = true;
         } else {
             dx         = deltaPos.x * sideAccelaration * 0.4f;
             speedSide += dx;
+            emitter.enableEmission = false;
         }
 
         if (speedForward > maxSpeed) {
@@ -168,6 +174,23 @@ public class PlayerController: MonoBehaviour
         graphics.transform.LookAt(graphics.transform.position + deltaPos,
                                   new Vector3(_angle, 1, 0).normalized);
 
+        if (Mathf.Abs(_angle) > 0.35f) {
+            emitter.startSpeed = Mathf.Abs(dx) * 8;
+
+            Vector3 rotation = _emitterLocalTransform.localEulerAngles;
+
+            if (_angle > 0) {
+                rotation.y = -60;
+                _emitterLocalTransform.localPosition = new Vector3(-0.3f, 0, _emitterLocalTransform.localPosition.z);
+            } else {
+                rotation.y = 60;
+                _emitterLocalTransform.localPosition = new Vector3(0.3f, 0, _emitterLocalTransform.localPosition.z);
+            }
+
+            _emitterLocalTransform.localEulerAngles = rotation;
+        } else {
+            emitter.enableEmission = false;
+        }
         //deltaPos = speed * Time.deltaTime;
         _controller.Move(speed * Time.deltaTime);
     }

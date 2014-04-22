@@ -14,15 +14,10 @@ public class Player: MonoBehaviour
             Debug.LogError("game == null");
         }
     }
-    
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter: " + other.gameObject.name);
+        //Debug.Log("OnTriggerEnter: " + other.gameObject.name);
         if (other.gameObject.GetComponent<FailTrigger>() != null) {
             _isFailTrigger = true;
         }
@@ -30,7 +25,7 @@ public class Player: MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("OnTriggerExit: " + other.gameObject.name);
+        //Debug.Log("OnTriggerExit: " + other.gameObject.name);
         if (other.gameObject.GetComponent<FailTrigger>() != null) {
             _isFailTrigger = false;
         }
