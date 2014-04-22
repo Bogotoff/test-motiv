@@ -35,10 +35,10 @@ public class MainMenu: MonoBehaviour
      */
     void Start()
     {
-        _resIndex = PlayerPrefs.GetInt("resolution", -1);
+        _resIndex        = PlayerPrefs.GetInt("resolution", -1);
+        Resolution[] res = Screen.resolutions;
 
-        if (_resIndex == -1 || _resIndex >= Screen.resolutions.Length) {
-            Resolution[] res = Screen.resolutions;
+        if (_resIndex < 0 || _resIndex >= res.Length) {
             _resIndex = 0;
 
             for (int i = 0; i < res.Length; i++) {
@@ -49,8 +49,8 @@ public class MainMenu: MonoBehaviour
             }
 
             PlayerPrefs.SetInt("resolution", _resIndex);
-        } else {
-            Screen.SetResolution(Screen.resolutions[_resIndex].width, Screen.resolutions[_resIndex].height, true);
+        } else if (!Screen.currentResolution.Equals(res[_resIndex])) {
+            Screen.SetResolution(res[_resIndex].width, res[_resIndex].height, true);
         }
 
         _musicVolume      = PlayerPrefs.GetFloat("music_volume", 0.8f);
@@ -139,6 +139,7 @@ public class MainMenu: MonoBehaviour
         PlayerPrefs.SetFloat("music_volume", _musicVolume);
         PlayerPrefs.SetFloat("effects_volume", _effectsVolume);
         PlayerPrefs.SetFloat("mouse_sensitivity", _mouseSensitivity);
+        PlayerPrefs.SetInt("resolution", _resIndex);
 
         _optionsPanel.SetActive(false);
         Screen.SetResolution(Screen.resolutions[_resIndex].width, Screen.resolutions[_resIndex].height, true);

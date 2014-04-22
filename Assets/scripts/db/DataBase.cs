@@ -102,7 +102,7 @@ public class DataBase
         if (Application.isEditor) {
             _dbPath = Path.Combine(Application.streamingAssetsPath, dbName);
         } else {
-            _dbPath = Path.Combine(Application.persistentDataPath, dbName);
+            _dbPath = Path.Combine(Application.streamingAssetsPath + "/../" , dbName);
         }
 
         if (!File.Exists(_dbPath)) {
