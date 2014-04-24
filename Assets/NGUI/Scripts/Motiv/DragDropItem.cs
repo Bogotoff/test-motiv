@@ -77,7 +77,8 @@ public class DragDropItem : MonoBehaviour
                 
                 _cachedTransform.BroadcastMessage("CheckParent", SendMessageOptions.DontRequireReceiver);
             } else {
-                _cachedTransform.localPosition += (Vector3)delta * ((_uiCamera != null ? _uiCamera.orthographicSize : 1f));
+                _cachedTransform.localPosition += (Vector3)delta *
+                    ((_uiCamera != null && _uiRoot != null) ? _uiRoot.manualHeight / _uiCamera.pixelHeight: 1f);
             }
         }
     }
