@@ -54,10 +54,10 @@ public class BonusTrigger: MonoBehaviour
     {
         if (other.tag.CompareTo("Player") == 0) {
             other.gameObject.GetComponent<Player>().onBonus(score);
-        }
 
-        if (destroyOnTake) {
-            Destroy(gameObject);
+            if (destroyOnTake) {
+                Destroy(gameObject);
+            }
         }
     }
 }

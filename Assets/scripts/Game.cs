@@ -52,8 +52,6 @@ public class Game: MonoBehaviour
 
     public void onBonus(int bonusScore)
     {
-        Debug.Log("Bonus!");
-        
         _score += bonusScore;
         
         if (_score < 0) {
