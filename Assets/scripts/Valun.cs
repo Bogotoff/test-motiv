@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//[RequireComponent (typeof (CharacterController))]
 public class Valun: MonoBehaviour
 {
     public Vector2 xSpeed = new Vector2(20f, 20f);
@@ -17,6 +18,7 @@ public class Valun: MonoBehaviour
     private float _zSpeed = 0f;
 
     private Transform _transform = null;
+    private CharacterController _characterController;
 
     void Start()
     {
@@ -30,9 +32,15 @@ public class Valun: MonoBehaviour
         } else {
             _zSpeed = 0;
         }
+
+        _characterController = GetComponent<CharacterController>();
+
+        if (_characterController != null) {
+            _characterController.enabled = false;
+        }
     }
 
-    void FixedUpdate()
+    void Update()
     {
         Vector3 pos = gameObject.transform.position;
 
@@ -81,6 +89,24 @@ public class Valun: MonoBehaviour
             gameObject.transform.Rotate(Vector3.right, Time.deltaTime * _zSpeed * 2);
         }
 
-        transform.position = new Vector3(pos.x, pos.y, pos.z);
+        if (_characterController.enabled) {
+            _characterController.Move(pos - transform.position);
+        } else {
+            transform.position = pos;
+        }
+    }
+
+    void OnTriggerEnter(Collider c)
+    {
+        if (c.gameObject.CompareTag("Player") && _characterController != null) {
+            _characterController.enabled = true;
+        }
+    }
+
+    void OnTriggerExit(Collider c)
+    {
+        if (c.gameObject.CompareTag("Player") && _characterController != null) {
+            _characterController.enabled = false;
+        }
     }
 }

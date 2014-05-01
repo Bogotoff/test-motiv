@@ -3,19 +3,39 @@ using System.Collections;
 
 public class GroundTrigger: MonoBehaviour
 {
-    public bool isGrounded = true;
+    public bool isGrounded {
+        get {
+            return (_raycastGrounded || _triggerGrounded);
+        }
+    }
+    public float distance = 1.2f;
+    private int _layerMask;
+    private Transform _cachedTransform;
+    private bool _raycastGrounded = false;
+    private bool _triggerGrounded = false;
 
-    void OnTriggerEnter(Collider other)
+    void Start()
     {
-        if (other.tag.CompareTo("Ground") == 0) {
-            isGrounded = true;
+        _cachedTransform = transform;
+        _layerMask = LayerMask.NameToLayer("Ground");
+    }
+
+    void Update()
+    {
+        _raycastGrounded = Physics.Raycast(_cachedTransform.position, Vector3.down, distance, _layerMask);
+    }
+
+    void OnTriggerEnter(Collider c)
+    {
+        if (c.gameObject.CompareTag("Ground")) {
+            _triggerGrounded = true;
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider c)
     {
-        if (other.tag.CompareTo("Ground") == 0) {
-            isGrounded = false;
+        if (c.gameObject.CompareTag("Ground")) {
+            _triggerGrounded = false;
         }
     }
 }

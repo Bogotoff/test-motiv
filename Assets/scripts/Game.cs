@@ -48,6 +48,10 @@ public class Game: MonoBehaviour
             _time += Time.deltaTime;
             _updateTimeText(Mathf.FloorToInt(_time));
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.LoadLevel("mainMenu");
+        }
     }
 
     public void onBonus(int bonusScore)

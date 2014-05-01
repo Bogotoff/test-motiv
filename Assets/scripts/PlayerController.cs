@@ -97,7 +97,7 @@ public class PlayerController: MonoBehaviour
 
         float value;
         float dx = 0;
-        float speedForward = speed.z;
+        float speedForward = _controller.velocity.z;// speed.z;
         float speedSide    = speed.x;
 
         Vector3 deltaPos = (Input.mousePosition - _screenCenter) / (float)Screen.width * _mouseSensitivity;

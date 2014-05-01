@@ -352,7 +352,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .87902832, y: 1.85060906, z: -17.997406}
+  m_LocalPosition: {x: 64.6975403, y: 555.51001, z: -57.6373596}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400024}
@@ -550,7 +550,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0470428467, y: -.631790161, z: .186063766}
+  m_LocalPosition: {x: .159851074, y: -.479999989, z: .186063766}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -1053,7 +1053,7 @@ MonoBehaviour:
   maxSpeedSide: 55
   speedSlider: {fileID: 0}
   sliderSteps: 20
-  jumpHeight: 20
+  jumpHeight: 25
   gravity: -1
   speed: {x: 0, y: 0, z: 0}
   groundTrigger: {fileID: 11400006}
@@ -1072,7 +1072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09057c10c24432842afe3fba8f9302f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
+  distance: 2
 --- !u!1002 &11400007
 EditorExtensionImpl:
   serializedVersion: 6
@@ -1089,7 +1089,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
+  m_Radius: .600000024
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &14300000
 CharacterController:
