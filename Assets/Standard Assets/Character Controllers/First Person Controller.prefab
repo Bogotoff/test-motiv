@@ -300,8 +300,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400034}
   - 114: {fileID: 11400006}
-  - 54: {fileID: 5400000}
   - 135: {fileID: 13500000}
+  - 54: {fileID: 5400000}
   m_Layer: 0
   m_Name: groundTrigger
   m_TagString: Untagged
@@ -550,7 +550,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .159851074, y: -.479999989, z: .186063766}
+  m_LocalPosition: {x: .16619873, y: -.5, z: .186063766}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -560,7 +560,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100036}
-  m_LocalRotation: {x: 0, y: -.5, z: 0, w: .866025388}
+  m_LocalRotation: {x: 0, y: .500000238, z: 0, w: -.866025269}
   m_LocalPosition: {x: 0, y: 0, z: -.119999997}
   m_LocalScale: {x: .5, y: .5, z: .49999997}
   m_Children: []
@@ -920,11 +920,11 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!65 &6500000
 BoxCollider:
@@ -1053,11 +1053,13 @@ MonoBehaviour:
   maxSpeedSide: 55
   speedSlider: {fileID: 0}
   sliderSteps: 20
-  jumpHeight: 25
+  jumpHeight: 24
   gravity: -1
   speed: {x: 0, y: 0, z: 0}
   groundTrigger: {fileID: 11400006}
   emitter: {fileID: 19800000}
+  skidmarks: {fileID: 0}
+  skidmarkWidth: 2
 --- !u!1002 &11400005
 EditorExtensionImpl:
   serializedVersion: 6
@@ -1072,7 +1074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09057c10c24432842afe3fba8f9302f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 2
+  distance: 1.20000005
 --- !u!1002 &11400007
 EditorExtensionImpl:
   serializedVersion: 6
@@ -2134,7 +2136,7 @@ ParticleSystem:
     range: {x: 7.01999998, y: 18.2199993}
   CollisionModule:
     enabled: 0
-    type: 1
+    type: 0
     plane0: {fileID: 0}
     plane1: {fileID: 0}
     plane2: {fileID: 0}

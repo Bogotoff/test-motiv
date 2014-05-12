@@ -50,7 +50,12 @@ public class PlayerController: MonoBehaviour
     /** Источник брызгов снега. */
     public ParticleSystem emitter;
 
+    /** След. */
+    public Skidmarks skidmarks;
 
+    /** Ширина следа. */
+    public float skidmarkWidth = 1;
+    
     /** Кэшированная компонента Transform. */
     private Transform _cachedTransform;
 
@@ -65,7 +70,7 @@ public class PlayerController: MonoBehaviour
     private float _angle = 0;
     private float _mouseSensitivity = 1f;
     private Transform _emitterLocalTransform;
-
+    private int _lastSkidmark;
     /**
      * Запуск скрипта.
      */
@@ -80,6 +85,12 @@ public class PlayerController: MonoBehaviour
         _mouseSensitivity = 0.3f + _mouseSensitivity * (2 - 0.3f); //[0.3..2]
 
         _emitterLocalTransform = emitter.gameObject.transform;
+
+        if (skidmarks == null) {
+            Debug.LogError("Skidmarks == null");
+        }
+
+        _lastSkidmark = -1;
     }
 
     /**
@@ -193,6 +204,14 @@ public class PlayerController: MonoBehaviour
         }
         //deltaPos = speed * Time.deltaTime;
         _controller.Move(speed * Time.deltaTime);
+
+        if (groundTrigger.isGrounded && groundTrigger.hitInfo.point != null) {
+            _lastSkidmark = skidmarks.AddSkidMark(groundTrigger.hitInfo.point,
+                                                  groundTrigger.hitInfo.normal,
+                                                  0.7f, skidmarkWidth, _lastSkidmark);
+        } else {
+            _lastSkidmark = -1;
+        }
     }
 
     /**

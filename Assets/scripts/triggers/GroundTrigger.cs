@@ -9,6 +9,8 @@ public class GroundTrigger: MonoBehaviour
         }
     }
     public float distance = 1.2f;
+    public RaycastHit hitInfo;
+    
     private int _layerMask;
     private Transform _cachedTransform;
     private bool _raycastGrounded = false;
@@ -22,7 +24,7 @@ public class GroundTrigger: MonoBehaviour
 
     void Update()
     {
-        _raycastGrounded = Physics.Raycast(_cachedTransform.position, Vector3.down, distance, _layerMask);
+        _raycastGrounded = Physics.Raycast(_cachedTransform.position, Vector3.down, out hitInfo, distance, _layerMask);
     }
 
     void OnTriggerEnter(Collider c)

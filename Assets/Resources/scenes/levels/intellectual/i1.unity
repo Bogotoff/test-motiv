@@ -144,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 33}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.35416675, y: 1.35416675, z: 0}
+  m_LocalPosition: {x: -1.33333337, y: 1.33333337, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 64}
@@ -174,7 +174,7 @@ Transform:
   m_GameObject: {fileID: 35}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .00153846154, y: .00153846154, z: .00153846154}
+  m_LocalScale: {x: .00156250002, y: .00156250002, z: .00156250002}
   m_Children:
   - {fileID: 66}
   m_Father: {fileID: 0}
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   automatic: 0
-  manualHeight: 1300
+  manualHeight: 1280
 --- !u!114 &116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2250,6 +2250,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 713614513}
   - 114: {fileID: 713614512}
+  - 114: {fileID: 713614514}
   m_Layer: 0
   m_Name: game
   m_TagString: Untagged
@@ -2286,6 +2287,25 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &713614514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 713614511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1943148467, guid: df3bcee53a7496146b6c1c1f9ffd7b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showInPanelTool: 1
+  mDebugInfo: 1
+  mClipRange: {x: 0, y: 0, z: 0, w: 0}
+  mClipSoftness: {x: 40, y: 40}
+  generateNormals: 0
+  depthPass: 0
+  widgetsAreStatic: 0
+  mClipping: 0
 --- !u!1001 &776785234
 Prefab:
   m_ObjectHideFlags: 0
@@ -2896,11 +2916,11 @@ Prefab:
     - target: {fileID: 11400006, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
-      objectReference: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: mMat
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: e7ef61ebb5c25394c8706a7ea658349f, type: 2}
     - target: {fileID: 11400004, guid: e8d9c37a3d5e20646ad0ff5d61e20205, type: 2}
       propertyPath: group
       value: 1
