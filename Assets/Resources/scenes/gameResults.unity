@@ -506,7 +506,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 290338290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -241.689728, y: 85.2366028, z: 0}
+  m_LocalPosition: {x: -241.689743, y: 94.6408386, z: 0}
   m_LocalScale: {x: 80, y: 80, z: 1}
   m_Children: []
   m_Father: {fileID: 1464652197}
@@ -521,14 +521,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mColor: {r: .235294104, g: .235294104, b: .235294104, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 0
   mMat: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
-  mDepth: 3
+  mDepth: 4
   mText: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B \u0438\u0433\u0440\u044B"
   mEncoding: 0
   mMultiline: 1
-  mEffectColor: {r: .779411793, g: .779411793, b: .779411793, a: 1}
+  mEffectColor: {r: .125, g: .125, b: .125, a: 1}
   mSymbols: 1
   mFont: {fileID: 11400000, guid: edbd891b79cd7194e9824a32dfd048aa, type: 2}
   mMaxLineWidth: 0
@@ -937,14 +937,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mColor: {r: .314425528, g: .529411793, b: .229671285, a: 1}
+  mColor: {r: .209807917, g: .411764681, b: .130190298, a: 1}
   mPivot: 0
   mMat: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
   mDepth: 3
   mText: 0
   mEncoding: 0
   mMultiline: 1
-  mEffectColor: {r: .779411793, g: .779411793, b: .779411793, a: 1}
+  mEffectColor: {r: .617647052, g: .617647052, b: .617647052, a: 1}
   mSymbols: 1
   mFont: {fileID: 11400000, guid: edbd891b79cd7194e9824a32dfd048aa, type: 2}
   mMaxLineWidth: 0
@@ -1195,7 +1195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mColor: {r: .130568773, g: .507352948, b: .179940552, a: 1}
+  mColor: {r: .0454152152, g: .411764681, b: .0934196785, a: 1}
   mPivot: 4
   mMat: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
   mDepth: 5
@@ -1740,6 +1740,51 @@ MonoBehaviour:
   mShowLastChar: 0
   mEffectStyle: 0
   mLineWidth: 0
+--- !u!1 &1447399840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1447399841}
+  - 114: {fileID: 1447399842}
+  m_Layer: 8
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1447399841
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1447399840}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4, y: 54, z: 0}
+  m_LocalScale: {x: 1450, y: 100, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1464652197}
+--- !u!114 &1447399842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1447399840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d33c6354b54fb847b16b36e1391868d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mMat: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
+  mDepth: 3
+  mAtlas: {fileID: 11400000, guid: 62adb30369acbf943a67cee0f69267a3, type: 2}
+  mSpriteName: Highlight - Shadowed
+  mFillCenter: 1
 --- !u!1 &1450986744
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,6 +1855,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 473.06839, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1447399841}
   - {fileID: 290338291}
   m_Father: {fileID: 66}
 --- !u!1 &1561157912
@@ -2204,12 +2250,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d33c6354b54fb847b16b36e1391868d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mColor: {r: .720588207, g: .720588207, b: .720588207, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mMat: {fileID: 2100000, guid: e7ef61ebb5c25394c8706a7ea658349f, type: 2}
+  mMat: {fileID: 2100000, guid: 460422df48c7c614abb5b8b1f5d3d892, type: 2}
   mDepth: -4
-  mAtlas: {fileID: 11400000, guid: f95e07e3d350bf748b0c42b453a69d2e, type: 2}
-  mSpriteName: Window
+  mAtlas: {fileID: 11400000, guid: 2c542c134e1279b40bf28acd1f21a6f5, type: 2}
+  mSpriteName: window
   mFillCenter: 1
 --- !u!1 &1895877294
 GameObject:

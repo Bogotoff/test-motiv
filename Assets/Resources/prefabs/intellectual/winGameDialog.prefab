@@ -65,14 +65,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mColor: {r: .0832612589, g: .566176474, b: .22647059, a: 1}
+  mColor: {r: .55195719, g: .904411793, b: .656478226, a: 1}
   mPivot: 4
   mMat: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
   mDepth: 4
   mText: "\u041E\u0442\u043B\u0438\u0447\u043D\u043E!"
   mEncoding: 0
   mMultiline: 0
-  mEffectColor: {r: 1, g: 1, b: 1, a: 1}
+  mEffectColor: {r: .102941155, g: .102941155, b: .102941155, a: 1}
   mSymbols: 1
   mFont: {fileID: 11400000, guid: edbd891b79cd7194e9824a32dfd048aa, type: 2}
   mMaxLineWidth: 0

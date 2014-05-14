@@ -307,19 +307,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: ySpeed.x
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: ySpeed.y
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: yBound.x
-      value: 5.01999998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: yBound.y
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
@@ -373,19 +373,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: ySpeed.x
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: ySpeed.y
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: yBound.x
-      value: 5.01999998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: yBound.y
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
@@ -6630,23 +6630,23 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1539039234}
+  - {fileID: 1019770142}
   - {fileID: 1991545213}
   - {fileID: 313992056}
   - {fileID: 965280079}
-  - {fileID: 1019770142}
-  - {fileID: 1124597991}
   - {fileID: 52759592}
-  - {fileID: 1539039234}
-  - {fileID: 142023212}
   - {fileID: 762549459}
-  - {fileID: 309923815}
+  - {fileID: 142023212}
+  - {fileID: 98264746}
+  - {fileID: 1604821555}
+  - {fileID: 1296965859}
   - {fileID: 110944624}
   - {fileID: 1116507846}
-  - {fileID: 1296965859}
-  - {fileID: 1518772933}
-  - {fileID: 1604821555}
-  - {fileID: 98264746}
+  - {fileID: 1124597991}
   - {fileID: 1796699723}
+  - {fileID: 309923815}
+  - {fileID: 1518772933}
   - {fileID: 494204461}
   - {fileID: 1028029135}
   - {fileID: 1096093995}
@@ -9167,10 +9167,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
-  ySpeed: {x: 10, y: 15}
+  ySpeed: {x: 0, y: 0}
   zSpeed: -10
   xBound: {x: 475, y: 523}
-  yBound: {x: 5.01999998, y: 15}
+  yBound: {x: 0, y: 0}
 --- !u!143 &878089935
 CharacterController:
   m_ObjectHideFlags: 0
@@ -10099,19 +10099,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: ySpeed.x
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: ySpeed.y
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: yBound.x
-      value: 5.01999998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: yBound.y
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
@@ -18967,10 +18967,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
-  ySpeed: {x: 10, y: 15}
+  ySpeed: {x: 0, y: 0}
   zSpeed: -10
   xBound: {x: 475, y: 523}
-  yBound: {x: 5.01999998, y: 15}
+  yBound: {x: 0, y: 0}
 --- !u!143 &1850298316
 CharacterController:
   m_ObjectHideFlags: 0
@@ -20905,10 +20905,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
-  ySpeed: {x: 10, y: 15}
+  ySpeed: {x: 0, y: 0}
   zSpeed: -10
   xBound: {x: 475, y: 523}
-  yBound: {x: 5.01999998, y: 15}
+  yBound: {x: 0, y: 0}
 --- !u!143 &2089116109
 CharacterController:
   m_ObjectHideFlags: 0
