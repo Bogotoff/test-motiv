@@ -90,8 +90,8 @@ public class GameResultsLoader: MonoBehaviour
                 for (i = 0; i < infoList[k].Count; i++) {
                     DataBase.getInstance().execute(
                         "INSERT INTO mv_results " +
-                        "(levelId, gameId, points, completeTime) " +
-                        "VALUES ('" + infoList[k][i].id + "','" + user.gameId + "','" + 
+                        "(userId, levelId, gameId, points, completeTime) " +
+                        "VALUES ('" + user.id + "','" + infoList[k][i].id + "','" + user.gameId + "','" + 
                             infoList[k][i].totalScore + "','" + infoList[k][i].totalTime + "')"
                     );
                 }
