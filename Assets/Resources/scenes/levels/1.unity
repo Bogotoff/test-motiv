@@ -365,6 +365,10 @@ Prefab:
       propertyPath: yBound.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
+      propertyPath: zSpeed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
@@ -429,6 +433,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: yBound.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
+      propertyPath: zSpeed
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -556,7 +564,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &52759595
 Renderer:
@@ -1096,7 +1104,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &98264749
 Renderer:
@@ -1246,7 +1254,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &102925705
 Renderer:
@@ -1338,7 +1346,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &110944627
 Renderer:
@@ -1844,6 +1852,10 @@ Prefab:
       propertyPath: speed
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
+      propertyPath: zSpeed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
@@ -1911,7 +1923,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &142023215
 Renderer:
@@ -2538,7 +2550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
   ySpeed: {x: 0, y: 0}
-  zSpeed: 5.01999998
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &200142361
@@ -4178,7 +4190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
   ySpeed: {x: 0, y: 0}
-  zSpeed: 5.01999998
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!143 &281963750
@@ -4614,7 +4626,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &309923818
 Renderer:
@@ -4804,7 +4816,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &313992059
 Renderer:
@@ -5178,7 +5190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
   ySpeed: {x: 0, y: 0}
-  zSpeed: 5.01999998
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &348211071
@@ -5550,6 +5562,10 @@ Prefab:
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: speed
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
+      propertyPath: zSpeed
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -9121,6 +9137,10 @@ Prefab:
       propertyPath: speed
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
+      propertyPath: zSpeed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
@@ -9655,7 +9675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
   ySpeed: {x: 0, y: 0}
-  zSpeed: 5.01999998
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &626448956
@@ -10181,7 +10201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
   ySpeed: {x: 0, y: 0}
-  zSpeed: 5.01999998
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &662640355
@@ -10374,7 +10394,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &665743425
 Renderer:
@@ -12384,6 +12404,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
+      propertyPath: zSpeed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
   m_RootGameObject: {fileID: 2032259920}
@@ -12608,7 +12632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
   ySpeed: {x: 0, y: 0}
-  zSpeed: 5.01999998
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &839632287
@@ -12934,6 +12958,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
+      propertyPath: zSpeed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
@@ -13078,7 +13106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
   ySpeed: {x: 0, y: 0}
-  zSpeed: 5.01999998
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &878089935
@@ -14292,7 +14320,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &965280077
 Renderer:
@@ -14451,6 +14479,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: yBound.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
+      propertyPath: zSpeed
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -14854,7 +14886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
   ySpeed: {x: 0, y: 0}
-  zSpeed: 5.01999998
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &986188628
@@ -15384,7 +15416,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1019770140
 Renderer:
@@ -16989,7 +17021,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1124597989
 Renderer:
@@ -17277,7 +17309,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: zSpeed
-      value: 5.01999998
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -18086,6 +18118,10 @@ Prefab:
       propertyPath: speed
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
+      propertyPath: zSpeed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
@@ -18482,7 +18518,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1244926160
 Renderer:
@@ -18562,7 +18598,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1245220597
 Renderer:
@@ -19356,7 +19392,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1296965862
 Renderer:
@@ -19531,7 +19567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 30, y: 40}
   ySpeed: {x: 0, y: 0}
-  zSpeed: -1
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &1322038259
@@ -19692,7 +19728,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1327342914
 Renderer:
@@ -19827,7 +19863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
   ySpeed: {x: 0, y: 0}
-  zSpeed: 5.01999998
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &1331613093
@@ -21691,6 +21727,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
+      propertyPath: zSpeed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
   m_RootGameObject: {fileID: 662640352}
@@ -21845,7 +21885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 20, y: 35}
   ySpeed: {x: 0, y: 0}
-  zSpeed: 5.01999998
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &1477523102
@@ -22551,7 +22591,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1518772936
 Renderer:
@@ -22824,6 +22864,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
+      propertyPath: zSpeed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
   m_RootGameObject: {fileID: 281963747}
@@ -22877,7 +22921,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1539039232
 Renderer:
@@ -24352,7 +24396,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1604821553
 Renderer:
@@ -25612,7 +25656,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1681246395
 Renderer:
@@ -26483,7 +26527,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: zSpeed
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: xSpeed.x
@@ -27833,7 +27877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 30, y: 40}
   ySpeed: {x: 0, y: 0}
-  zSpeed: -1
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &1811532089
@@ -28049,6 +28093,10 @@ Prefab:
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: speed
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
+      propertyPath: zSpeed
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -28528,34 +28576,34 @@ Transform:
   m_LocalPosition: {x: -499.07547, y: 0, z: -72.7698746}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 839632285}
-  - {fileID: 626448954}
-  - {fileID: 470778931}
   - {fileID: 878089933}
   - {fileID: 1850298314}
-  - {fileID: 2145248278}
-  - {fileID: 1840850300}
   - {fileID: 1848202295}
-  - {fileID: 281963748}
-  - {fileID: 1477523100}
+  - {fileID: 1660815969}
+  - {fileID: 348211069}
+  - {fileID: 1255588171}
+  - {fileID: 583476407}
+  - {fileID: 839632285}
+  - {fileID: 1380180374}
+  - {fileID: 470778931}
+  - {fileID: 1893873461}
+  - {fileID: 2032259921}
   - {fileID: 1331613091}
   - {fileID: 459672441}
-  - {fileID: 986188626}
-  - {fileID: 1255588171}
   - {fileID: 92069978}
-  - {fileID: 1571122640}
-  - {fileID: 1660815969}
-  - {fileID: 200142359}
-  - {fileID: 1380180374}
-  - {fileID: 2032259921}
-  - {fileID: 662640353}
-  - {fileID: 1322038257}
-  - {fileID: 583476407}
-  - {fileID: 1893873461}
   - {fileID: 2089116107}
-  - {fileID: 840927222}
-  - {fileID: 348211069}
+  - {fileID: 1840850300}
+  - {fileID: 626448954}
+  - {fileID: 986188626}
+  - {fileID: 1571122640}
+  - {fileID: 662640353}
+  - {fileID: 281963748}
   - {fileID: 1811532093}
+  - {fileID: 2145248278}
+  - {fileID: 840927222}
+  - {fileID: 200142359}
+  - {fileID: 1322038257}
+  - {fileID: 1477523100}
   m_Father: {fileID: 1559680993}
 --- !u!1001 &1845590435
 Prefab:
@@ -28646,7 +28694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
   ySpeed: {x: 0, y: 0}
-  zSpeed: 5.01999998
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &1848202297
@@ -28752,7 +28800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
   ySpeed: {x: 0, y: 0}
-  zSpeed: 5.01999998
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &1850298316
@@ -30472,7 +30520,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 6, z: 13}
+  m_Size: {x: 20, y: 20, z: 13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1991545211
 Renderer:
@@ -31031,7 +31079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
   ySpeed: {x: 0, y: 0}
-  zSpeed: 5.01999998
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &2032259923
@@ -31590,7 +31638,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: zSpeed
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: xSpeed.x
@@ -31941,7 +31989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: {x: 10, y: 30}
   ySpeed: {x: 0, y: 0}
-  zSpeed: 5.01999998
+  zSpeed: 0
   xBound: {x: 475, y: 523}
   yBound: {x: 0, y: 0}
 --- !u!135 &2089116109
@@ -33884,7 +33932,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: zSpeed
-      value: 5.01999998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ef614bdb9e6d66844a959631db2b3b32, type: 2}
       propertyPath: xSpeed.x
