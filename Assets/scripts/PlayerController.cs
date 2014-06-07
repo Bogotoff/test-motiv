@@ -75,7 +75,8 @@ public class PlayerController: MonoBehaviour
     private Transform _emitterLocalTransform;
     private int _lastSkidmark;
     private bool _oldIsGrounded;
-
+    /** Максимальная отклонение координаты Y мыши с учетом чувствительности. */
+    private float screenHeightCoef;
     /**
      * Запуск скрипта.
      */
@@ -88,6 +89,8 @@ public class PlayerController: MonoBehaviour
 
         _mouseSensitivity = PlayerPrefs.GetFloat("mouse_sensitivity", 0.4f);
         _mouseSensitivity = 0.3f + _mouseSensitivity * (2 - 0.3f); //[0.3..2]
+
+        screenHeightCoef = _mouseSensitivity * _screenCenter.y / (float)Screen.width;
 
         _emitterLocalTransform = emitter.gameObject.transform;
 
@@ -144,13 +147,15 @@ public class PlayerController: MonoBehaviour
         }
 
         float localMaxSpeedSide = (speedForward < maxSpeedSide) ? speedForward : maxSpeedSide;
-        
+
+        localMaxSpeedSide = Mathf.Max(localMaxSpeedSide, maxSpeedSide * 0.5f * (deltaPos.y / screenHeightCoef));
+
         if (speedSide > localMaxSpeedSide) {
             speedSide = localMaxSpeedSide;
         } else if (speedSide < -localMaxSpeedSide) {
             speedSide = -localMaxSpeedSide;
         }
-        
+
         float verticalSpeed = _controller.velocity.y + gravity;// * Time.deltaTime;
 
         if (groundTrigger.isGrounded) {
