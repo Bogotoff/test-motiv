@@ -55,7 +55,10 @@ public class PlayerController: MonoBehaviour
 
     /** Ширина следа. */
     public float skidmarkWidth = 1;
-    
+
+    /** Анимация персонажа. */
+    public SnowboardAnimations animations;
+
     /** Кэшированная компонента Transform. */
     private Transform _cachedTransform;
 
@@ -71,6 +74,8 @@ public class PlayerController: MonoBehaviour
     private float _mouseSensitivity = 1f;
     private Transform _emitterLocalTransform;
     private int _lastSkidmark;
+    private bool _oldIsGrounded;
+
     /**
      * Запуск скрипта.
      */
@@ -91,6 +96,7 @@ public class PlayerController: MonoBehaviour
         }
 
         _lastSkidmark = -1;
+        _oldIsGrounded = true;
     }
 
     /**
@@ -148,12 +154,19 @@ public class PlayerController: MonoBehaviour
         float verticalSpeed = _controller.velocity.y + gravity;// * Time.deltaTime;
 
         if (groundTrigger.isGrounded) {
+            if (!_oldIsGrounded) {
+                animations.landed();
+            }
+
             if (!isForceStop && Input.GetMouseButtonDown(0)) {
                 verticalSpeed = jumpHeight;//calculateJumpVerticalSpeed(jumpHeight);// / Time.deltaTime;
+                animations.jump();
             } else {
                 verticalSpeed -= 1;//2 * gravity * Time.deltaTime;
             }
         }
+
+        _oldIsGrounded = groundTrigger.isGrounded;
 
         if (speedSlider != null) {
             value = speedForward / maxSpeed;
@@ -167,7 +180,7 @@ public class PlayerController: MonoBehaviour
 
         speed = new Vector3(speedSide, verticalSpeed, speedForward);
 
-        deltaPos = speed * 1;
+        deltaPos = speed;
         deltaPos.y = 0;
 
         deltaPos = deltaPos + Vector3.forward * moveCoef;
@@ -181,9 +194,8 @@ public class PlayerController: MonoBehaviour
         }
 
         _angle += (value - _angle) * 0.2f;
-
-        graphics.transform.LookAt(graphics.transform.position + deltaPos,
-                                  new Vector3(_angle, 1, 0).normalized);
+        animations.setSide(_angle * 2);
+        graphics.transform.LookAt(graphics.transform.position + deltaPos);
 
         if (Mathf.Abs(_angle) > 0.35f) {
             emitter.startSpeed = Mathf.Abs(dx) * 8;
