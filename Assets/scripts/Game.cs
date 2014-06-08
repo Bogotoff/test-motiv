@@ -10,6 +10,12 @@ public class Game: MonoBehaviour
     public UILabel scoreLabel;
     public UILabel countdownLabel;
 
+    /** Источник звука фоновой музыки. */
+    public AudioSource musicSource   = null;
+
+    /** Источник звуковых эффектов. */
+    public AudioSource effectsSource = null;
+
     private float _time = 0;
     private int _score  = 0;
 
@@ -26,7 +32,13 @@ public class Game: MonoBehaviour
             return;
         }
 
-        Camera.main.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("music_volume", 0.8f);
+        if (musicSource == null || effectsSource == null) {
+            Debug.LogError("musicAudio or effectsAudio is null");
+            return;
+        }
+
+        musicSource.volume   = PlayerPrefs.GetFloat("music_volume", 0.5f);
+        effectsSource.volume = PlayerPrefs.GetFloat("effects_volume", 0.8f);
     }
 
     void Start()
@@ -61,7 +73,8 @@ public class Game: MonoBehaviour
         if (_score < 0) {
             _score = 0;
         }
-        
+
+        effectsSource.Play();
         _updateScoreText(_score);
     }
 

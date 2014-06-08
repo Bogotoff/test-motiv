@@ -10,7 +10,7 @@ public class MainMenu: MonoBehaviour
     public Texture2D backgroundTexture;
 
     /** Громкость музыки. */
-    private float _musicVolume = 0.8f;
+    private float _musicVolume = 0.5f;
     
     /** Громкость эффектов. */
     private float _effectsVolume = 0.8f;
@@ -53,7 +53,7 @@ public class MainMenu: MonoBehaviour
             Screen.SetResolution(res[_resIndex].width, res[_resIndex].height, true);
         }
 
-        _musicVolume      = PlayerPrefs.GetFloat("music_volume", 0.8f);
+        _musicVolume      = PlayerPrefs.GetFloat("music_volume", 0.5f);
         _effectsVolume    = PlayerPrefs.GetFloat("effects_volume", 0.8f);
         _mouseSensitivity = PlayerPrefs.GetFloat("mouse_sensitivity", 0.4f);
 
@@ -111,7 +111,7 @@ public class MainMenu: MonoBehaviour
     private void onOptionsCancelClick(GameObject target)
     {
         UIScrollBar sb = GameObject.Find("volumeBar").GetComponent<UIScrollBar>();
-        sb.scrollValue = PlayerPrefs.GetFloat("music_volume", 0.8f);
+        sb.scrollValue = PlayerPrefs.GetFloat("music_volume", 0.5f);
         onVolumeChange(sb);
 
         sb = GameObject.Find("effectsBar").GetComponent<UIScrollBar>();

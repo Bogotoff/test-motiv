@@ -8,16 +8,16 @@ public class CameraController: MonoBehaviour
 {
     /** Позиция, в которую движется камера. */
     public Transform rootTransform;
-
+    
     /** Позиция, куда смотрит камера. */
     public Transform targetTransform;
-
+    
     /** Скорость передвижения. */
     public float moveSpeed;
 
     /** Кэшированная компонента Transform. */
     private Transform _cashedTransform;
-
+    
     /**
      * Инициализация скрипта.
      */
@@ -25,10 +25,10 @@ public class CameraController: MonoBehaviour
     {
         _cashedTransform = transform;
         _cashedTransform.LookAt(targetTransform);
-
+        
         LateUpdate();
     }
-
+    
     /**
      * Вызывается после вызова Update.
      * 
@@ -39,7 +39,7 @@ public class CameraController: MonoBehaviour
         if (rootTransform == null || targetTransform == null) {
             return;
         }
-
+        
         _cashedTransform.position = Vector3.Lerp(_cashedTransform.position, rootTransform.position, moveSpeed * Time.deltaTime);
         _cashedTransform.LookAt(targetTransform);
     }
